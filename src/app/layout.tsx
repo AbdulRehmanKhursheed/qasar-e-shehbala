@@ -62,13 +62,13 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
-    images: [{ url: SITE.ogImage, width: 1280, height: 1225, alt: SITE.name }],
+    images: [{ url: `${SITE.url}${SITE.ogImage}`, width: 1280, height: 1225, alt: SITE.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
-    images: [SITE.ogImage],
+    images: [`${SITE.url}${SITE.ogImage}`],
   },
   appleWebApp: { capable: true, title: SITE.name, statusBarStyle: "black-translucent" },
   robots: {

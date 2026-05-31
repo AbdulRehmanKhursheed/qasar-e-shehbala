@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   ShoppingBag,
+  Shirt,
   Scissors,
   Package,
   Users,
@@ -22,6 +23,7 @@ import { logoutAction } from "@/server/auth/actions";
 const NAV = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { label: "Orders", href: "/admin/orders", icon: ShoppingBag },
+  { label: "Products", href: "/admin/products", icon: Shirt },
   { label: "Tailoring", href: "/admin/tailoring", icon: Scissors },
   { label: "Inventory", href: "/admin/inventory", icon: Package },
   { label: "Customers", href: "/admin/customers", icon: Users },
