@@ -134,6 +134,18 @@ export async function searchProducts(query: string): Promise<Product[]> {
   }, []);
 }
 
+export async function getPublishedProductSlugs(): Promise<{ slug: string; updatedAt: Date }[]> {
+  return safeQuery(
+    () =>
+      prisma.product.findMany({
+        where: { isPublished: true },
+        select: { slug: true, updatedAt: true },
+        orderBy: { updatedAt: "desc" },
+      }),
+    []
+  );
+}
+
 export async function getCategoryBySlug(slug: string): Promise<Category | null> {
   return safeQuery(async () => {
     const record = await prisma.category.findFirst({ where: { slug } });

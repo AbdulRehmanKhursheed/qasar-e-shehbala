@@ -1,11 +1,10 @@
 import type { MetadataRoute } from "next";
 import { SITE, GROOM_CATEGORIES } from "@/lib/constants";
 import { getAllPosts } from "@/lib/blog";
+import { getPublishedProductSlugs } from "@/server/catalog/queries";
 
-/**
- * Dynamic sitemap — auto-generated from static routes + DB content.
- * Product/blog slugs come from the DB in Phase 2.
- */
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
@@ -75,7 +74,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  // TODO: append published product slugs from the DB in Phase 2
+  const products = await getPublishedProductSlugs();
+  const productRoutes: MetadataRoute.Sitemap = products.map((product) => ({
+    url: `${SITE.url}/products/${product.slug}`,
+    lastModified: product.updatedAt,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
 
-  return [...staticRoutes, ...categoryRoutes, ...blogRoutes];
+  return [...staticRoutes, ...categoryRoutes, ...productRoutes, ...blogRoutes];
 }
