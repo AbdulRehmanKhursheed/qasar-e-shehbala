@@ -288,6 +288,41 @@ export const CATEGORY_FAQS: Record<string, { question: string; answer: string }[
 
 export const DEFAULT_FAQS = COMMON_FAQS;
 
+/**
+ * Local-intent landing pages — the biggest uncontested SEO moat. National
+ * brands run one global catalog and target no city; we own "sherwani in
+ * Rawalpindi/Islamabad" with real local copy + LocalBusiness data.
+ */
+export const LOCAL_AREAS = [
+  {
+    slug: "rawalpindi",
+    city: "Rawalpindi",
+    headline: "Made-to-Measure Sherwani & Groom Wear in Rawalpindi",
+    intro:
+      "Qasar-e-Shehbala has dressed Rawalpindi's grooms from our workshop at City Centre, Saddar since 1999. Made-to-measure sherwani, prince coats and waistcoats — cut by master karigars, fitted in person, ready in time for the barat.",
+    body:
+      "Being in the heart of Saddar means you can walk in, see the velvet, jamawar and banarsi in real light, and have your naap taken by the same karigars who will stitch your sherwani. No middlemen, no guesswork — just a fit that photographs the way you imagined. Rated 5.0 by 138 grooms, we are the Saddar name families return to wedding after wedding.",
+  },
+  {
+    slug: "islamabad",
+    city: "Islamabad",
+    headline: "Made-to-Measure Sherwani & Groom Wear for Islamabad Grooms",
+    intro:
+      "Just a short drive from Islamabad, our Saddar atelier tailors sherwani, prince coats and waistcoats to measure for grooms across the capital. Visit us at City Centre, Saddar, or share your measurements on WhatsApp.",
+    body:
+      "Islamabad grooms have come to Qasar-e-Shehbala for over twenty-five years — for the craftsmanship of a true Saddar tailoring house without the markup of a mall brand. Choose your fabric and embroidery, get measured once, and collect a perfectly fitted sherwani for your barat or walima. Out-of-the-way schedule? We take measurements and confirm everything over WhatsApp.",
+  },
+  {
+    slug: "wah-cantt",
+    city: "Wah Cantt",
+    headline: "Made-to-Measure Sherwani & Groom Wear for Wah Cantt",
+    intro:
+      "Grooms from Wah Cantt and Taxila trust Qasar-e-Shehbala in Saddar, Rawalpindi for made-to-measure sherwani and prince coats — master tailoring, real fabrics, and a fit cut to your exact measurements.",
+    body:
+      "A short trip to Saddar brings you to a tailoring house established in 1999 and rated 5.0 by 138 grooms. Pick your cloth, get measured by our karigars, and collect a sherwani made for your day — or send your measurements on WhatsApp and we will courier it to Wah Cantt.",
+  },
+] as const;
+
 /** Event types for whatsapp_click analytics beacon. */
 export const ANALYTICS_EVENTS = {
   WHATSAPP_CLICK: "whatsapp_click",

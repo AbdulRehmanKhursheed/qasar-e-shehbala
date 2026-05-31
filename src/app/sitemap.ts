@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE, GROOM_CATEGORIES, OCCASIONS } from "@/lib/constants";
+import { SITE, GROOM_CATEGORIES, OCCASIONS, LOCAL_AREAS } from "@/lib/constants";
 import { getAllPosts } from "@/lib/blog";
 import { getPublishedProductSlugs } from "@/server/catalog/queries";
 
@@ -80,6 +80,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
+  const areaRoutes: MetadataRoute.Sitemap = LOCAL_AREAS.map((area) => ({
+    url: `${SITE.url}/groom-wear/${area.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.85,
+  }));
+
   const blogRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
     url: `${SITE.url}/blog/${post.slug}`,
     lastModified: new Date(post.updated ?? post.date),
@@ -95,5 +102,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  return [...staticRoutes, ...categoryRoutes, ...occasionRoutes, ...productRoutes, ...blogRoutes];
+  return [
+    ...staticRoutes,
+    ...categoryRoutes,
+    ...occasionRoutes,
+    ...areaRoutes,
+    ...productRoutes,
+    ...blogRoutes,
+  ];
 }

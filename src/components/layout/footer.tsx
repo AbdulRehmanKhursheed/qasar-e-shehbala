@@ -18,6 +18,12 @@ const LINKS = {
     { label: "Book Appointment", href: "/appointments" },
     { label: "Contact", href: "/contact" },
   ],
+  Serving: [
+    { label: "Sherwani in Rawalpindi", href: "/groom-wear/rawalpindi" },
+    { label: "Groom Wear Islamabad", href: "/groom-wear/islamabad" },
+    { label: "Sherwani Wah Cantt", href: "/groom-wear/wah-cantt" },
+    { label: "Shop by Occasion", href: "/occasions" },
+  ],
 };
 
 const SOCIALS = [
@@ -32,7 +38,7 @@ export function Footer() {
       <h2 id="footer-heading" className="sr-only">Footer</h2>
 
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-3 lg:grid-cols-5">
 
           {/* Brand */}
           <div className="lg:col-span-1">
