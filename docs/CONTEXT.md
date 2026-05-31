@@ -18,18 +18,24 @@ Design system: warm "parchment" theme — fonts Cormorant Garamond (display) + P
 ```
 src/app/
   (site)/            all public pages (own layout: navbar + footer + WhatsApp FAB)
-    page.tsx         home
-    collections/     /collections and /collections/[slug] (ISR, reads DB)
-    products/[slug]  product detail (ISR, reads DB, Product JSON-LD)
-    blog/            blog index + [slug] (MDX from content/blog/)
-    about, contact, appointments, measurement-guide, search
+    page.tsx         home (hero, trust, collections, process, reviews, visit)
+    collections/     /collections and /collections/[slug] (ISR, reads DB, CollectionPage JSON-LD, SEO copy footer)
+    occasions/       /occasions and /occasions/[slug] — barat/walima/mehndi/nikah curated by category (SEO landing pages)
+    products/[slug]  product detail (ISR, Product JSON-LD, specs, size chart, related, sticky mobile CTA)
+    blog/            blog index + [slug] (MDX; byline + related posts)
+    about, contact, appointments, measurement-guide (+ standard size chart), search
   api/
     leads/           POST → createLead
     appointments/    POST → createAppointment
     beacon/          POST → analytics event (sendBeacon target)
-  layout.tsx         root: fonts, metadata, manifest, LocalBusiness JSON-LD
+  layout.tsx         root: fonts, metadata, manifest, LocalBusiness + WebSite(SearchAction) JSON-LD
   sitemap.ts, robots.ts, manifest.ts
-content/blog/        30 MDX articles (the blog CMS — git-managed)
+content/blog/        30 MDX articles (the blog CMS — git-managed); human-voiced, interlinked
+
+Conversion/shopping components: components/product/{size-chart,product-specs,sticky-cta,whatsapp-cta,related via product-card}, components/ui/{trust-bar,reviews}.
+Reference data in lib/constants.ts: SIZE_CHART, CATEGORY_SPECS, TRUST_POINTS, OCCASIONS, CATEGORY_SEO_COPY.
+NOTE: reviews.tsx testimonial quotes are representative placeholders — replace with verbatim Google review excerpts.
+Product detail fields beyond `description` are category-default (CATEGORY_SPECS), not per-product in the DB yet.
 src/server/          DATA LAYER (read queries + public writes only)
   catalog/queries.ts          getProducts, getProductBySlug, search, categories, fabrics, slugs
   leads/ appointments/ customers/ analytics/  mutations (public form/beacon writes)
