@@ -149,7 +149,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </p>
               )}
               {isMTO && (
-                <Badge variant="jewel">Made to Measure</Badge>
+                <Badge variant="terracotta">Made to Measure</Badge>
               )}
             </div>
 

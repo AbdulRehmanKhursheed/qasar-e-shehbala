@@ -55,7 +55,7 @@ const COLUMNS: Column<AdminProductRow>[] = [
     header: "Status",
     cell: (row) =>
       row.isPublished ? (
-        <Badge variant="royal">Live</Badge>
+        <Badge variant="wine">Live</Badge>
       ) : (
         <Badge variant="outline">Draft</Badge>
       ),

@@ -65,7 +65,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <header className="mt-10 mb-10">
           <div className="flex flex-wrap gap-2 mb-4">
-            <Badge variant="jewel">{post.category}</Badge>
+            <Badge variant="terracotta">{post.category}</Badge>
             {post.tags.map((tag) => (
               <Badge key={tag} variant="outline">
                 {tag}

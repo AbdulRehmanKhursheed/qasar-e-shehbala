@@ -7,95 +7,93 @@ import { SITE } from "@/lib/constants";
 
 interface ProductCardProps {
   product: Product;
-  priority?: boolean; // true for above-the-fold cards (LCP)
+  priority?: boolean;
   className?: string;
 }
 
 export function ProductCard({ product, priority = false, className }: ProductCardProps) {
   const primaryImage = product.images[0];
   const hoverImage = product.images[1];
-  const priceRupees = Number(product.basePriceMinor) / 100;
-
   const isMTO = product.productType === "MADE_TO_ORDER" || product.productType === "BOTH";
 
   return (
-    <article
-      className={cn("group relative flex flex-col overflow-hidden rounded-xl bg-white", className)}
-    >
+    <article className={cn("group flex flex-col", className)}>
       {/* Image */}
       <Link
         href={`/products/${product.slug}`}
-        className="relative block aspect-[3/4] overflow-hidden bg-gray-100"
+        className="relative block overflow-hidden rounded-xl bg-linen"
         tabIndex={-1}
         aria-hidden="true"
       >
-        {primaryImage ? (
-          <>
-            <Image
-              src={primaryImage.r2Key}
-              alt={primaryImage.alt}
-              fill
-              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-              className={cn(
-                "object-cover transition-all duration-500",
-                hoverImage ? "group-hover:opacity-0" : "group-hover:scale-105"
-              )}
-              priority={priority}
-            />
-            {hoverImage && (
+        <div className="aspect-[3/4]">
+          {primaryImage ? (
+            <>
               <Image
-                src={hoverImage.r2Key}
-                alt={hoverImage.alt}
+                src={primaryImage.r2Key}
+                alt={primaryImage.alt}
                 fill
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                className="absolute inset-0 object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                className={cn(
+                  "object-cover transition-all duration-700",
+                  hoverImage ? "group-hover:opacity-0" : "group-hover:scale-105"
+                )}
+                priority={priority}
               />
-            )}
-          </>
-        ) : (
-          <div className="flex h-full items-center justify-center bg-gray-100 text-gray-300">
-            <svg className="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-          </div>
-        )}
-
-        {/* Badges */}
-        <div className="absolute left-3 top-3 flex flex-col gap-1.5">
-          {isMTO && (
-            <Badge variant="jewel">Made to Measure</Badge>
+              {hoverImage && (
+                <Image
+                  src={hoverImage.r2Key}
+                  alt={hoverImage.alt}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="absolute inset-0 object-cover opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+                />
+              )}
+            </>
+          ) : (
+            <div className="flex h-full items-center justify-center">
+              <svg className="h-10 w-10 text-sand" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
           )}
         </div>
+
+        {isMTO && (
+          <div className="absolute left-3 top-3">
+            <Badge variant="terracotta">Made to Measure</Badge>
+          </div>
+        )}
       </Link>
 
       {/* Info */}
-      <div className="flex flex-1 flex-col p-4">
+      <div className="mt-3 px-1">
         {product.category && (
-          <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-mist mb-1">
             {product.category.name}
           </p>
         )}
 
-        <h3 className="text-sm font-medium text-gray-900 leading-snug">
+        <h3 className="font-display text-lg leading-snug text-charcoal">
           <Link
             href={`/products/${product.slug}`}
-            className="hover:text-jewel transition-colors focus-visible:outline-none focus-visible:underline"
+            className="transition-colors hover:text-terracotta focus-visible:outline-none focus-visible:underline"
           >
             {product.name}
           </Link>
         </h3>
 
-        {priceRupees > 0 && (
-          <p className="mt-2 text-base font-semibold text-gray-900">
-            {formatPKR(Number(product.basePriceMinor))}
-          </p>
-        )}
-
-        {isMTO && (
-          <p className="mt-1.5 text-xs text-gray-500">
-            Ready in {SITE.defaultLeadTimeDays} working days
-          </p>
-        )}
+        <div className="mt-1.5 flex items-center justify-between">
+          {Number(product.basePriceMinor) > 0 && (
+            <p className="text-[14px] font-semibold text-charcoal">
+              {formatPKR(BigInt(product.basePriceMinor))}
+            </p>
+          )}
+          {isMTO && (
+            <p className="text-[11px] text-mist">
+              {SITE.defaultLeadTimeDays} days
+            </p>
+          )}
+        </div>
       </div>
     </article>
   );

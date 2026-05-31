@@ -35,7 +35,7 @@ export default function BlogAdminPage() {
                   <p className="text-xs text-gray-400 font-mono mt-0.5">{post.slug}</p>
                 </td>
                 <td className="px-4 py-3">
-                  <Badge variant="royal">{post.category}</Badge>
+                  <Badge variant="wine">{post.category}</Badge>
                 </td>
                 <td className="px-4 py-3">
                   <time className="text-xs text-gray-500">{formatDate(post.date)}</time>

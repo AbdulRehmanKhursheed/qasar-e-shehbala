@@ -62,7 +62,7 @@ function FeaturedCard({ post }: { slug: string; post: PostMeta }) {
   return (
     <article className="rounded-2xl border border-gray-100 bg-gray-50 p-6 sm:p-8">
       <div className="flex flex-wrap items-center gap-2">
-        <Badge variant="jewel">{post.category}</Badge>
+        <Badge variant="terracotta">{post.category}</Badge>
         <time dateTime={post.date} className="text-xs text-gray-400">
           {formatDate(post.date)} · {post.readingMinutes} min read
         </time>
