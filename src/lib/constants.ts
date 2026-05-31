@@ -53,6 +53,81 @@ export const GROOM_CATEGORIES = [
   { slug: "kurta-shalwar", label: "Kurta Shalwar", romanUrdu: "Kurta Shalwar" },
 ] as const;
 
+/**
+ * Standard groom-wear size chart (inches). Reference sizing only — every garment
+ * is cut to the customer's own measurements, so these are a starting point.
+ */
+export const SIZE_CHART = {
+  units: "inches",
+  columns: ["Size", "Chest", "Waist", "Shoulder", "Sleeve", "Length"],
+  rows: [
+    { size: "S", chest: "38", waist: "32", shoulder: "17", sleeve: "23", length: "42" },
+    { size: "M", chest: "40", waist: "34", shoulder: "17.5", sleeve: "23.5", length: "43" },
+    { size: "L", chest: "42", waist: "36", shoulder: "18", sleeve: "24", length: "44" },
+    { size: "XL", chest: "44", waist: "38", shoulder: "18.5", sleeve: "24.5", length: "45" },
+    { size: "XXL", chest: "46", waist: "40", shoulder: "19", sleeve: "25", length: "46" },
+  ],
+} as const;
+
+interface CategorySpec {
+  fit: string;
+  includes: string[];
+  occasion: string;
+  lining: string;
+  care: string;
+}
+
+/**
+ * Per-category product specifications shown on every product page. These are
+ * house standards; the per-product description carries the unique detail.
+ */
+export const CATEGORY_SPECS: Record<string, CategorySpec> = {
+  sherwani: {
+    fit: "Tailored, made-to-measure",
+    includes: ["Sherwani", "Inner kurta", "Shalwar or churidar pajama"],
+    occasion: "Barat · Wedding · Formal",
+    lining: "Fully lined",
+    care: "Dry clean only",
+  },
+  "prince-coat": {
+    fit: "Slim tailored, made-to-measure",
+    includes: ["Prince coat", "Matching trouser"],
+    occasion: "Walima · Reception · Formal events",
+    lining: "Fully lined",
+    care: "Dry clean only",
+  },
+  waistcoat: {
+    fit: "Tailored over kurta, made-to-measure",
+    includes: ["Waistcoat"],
+    occasion: "Mehndi · Nikah · Semi-formal",
+    lining: "Lined",
+    care: "Dry clean recommended",
+  },
+  "kurta-shalwar": {
+    fit: "Relaxed tailored, made-to-measure",
+    includes: ["Kurta", "Shalwar"],
+    occasion: "Mehndi · Nikah · Festive",
+    lining: "Unlined",
+    care: "Dry clean or gentle hand wash",
+  },
+};
+
+export const DEFAULT_CATEGORY_SPEC: CategorySpec = {
+  fit: "Tailored, made-to-measure",
+  includes: ["The garment as shown"],
+  occasion: "Wedding · Formal",
+  lining: "Lined",
+  care: "Dry clean only",
+};
+
+/** Cross-cutting promises shown as a trust row across the storefront. */
+export const TRUST_POINTS = [
+  { label: "Rated 5.0", detail: "by 138 grooms" },
+  { label: "Since 1999", detail: "Saddar, Rawalpindi" },
+  { label: "Master karigars", detail: "hand-finished" },
+  { label: "Nationwide delivery", detail: "measurements by WhatsApp" },
+] as const;
+
 /** Event types for whatsapp_click analytics beacon. */
 export const ANALYTICS_EVENTS = {
   WHATSAPP_CLICK: "whatsapp_click",

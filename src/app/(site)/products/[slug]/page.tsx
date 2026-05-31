@@ -1,16 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { Phone, Ruler } from "lucide-react";
+import { Phone, Truck, ShieldCheck } from "lucide-react";
 import { buildMetadata, productJsonLd } from "@/lib/seo";
 import { formatPKR } from "@/lib/utils";
 import { SITE } from "@/lib/constants";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Badge } from "@/components/ui/badge";
+import { TrustBar } from "@/components/ui/trust-bar";
 import { GeometricMotif } from "@/components/ui/geometric-motif";
 import { WhatsAppCTA } from "@/components/product/whatsapp-cta";
-import { getProductBySlug } from "@/server/catalog/queries";
+import { StickyCta } from "@/components/product/sticky-cta";
+import { ProductSpecs } from "@/components/product/product-specs";
+import { SizeChart } from "@/components/product/size-chart";
+import { ProductCard } from "@/components/product/product-card";
+import { getProductBySlug, getRelatedProducts } from "@/server/catalog/queries";
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
@@ -44,6 +49,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const isMTO = product.productType === "MADE_TO_ORDER" || product.productType === "BOTH";
   const primaryImage = product.images[0];
   const categoryName = product.category?.name;
+  const related = await getRelatedProducts(product.category?.slug, product.id);
 
   const structuredData = productJsonLd({
     name: product.name,
@@ -59,7 +65,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <div className="min-h-screen bg-parchment">
       <JsonLd data={structuredData} />
 
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-8 pb-28 sm:px-6 lg:px-8 lg:pb-12">
         <Breadcrumb
           items={[
             { name: "Collections", href: "/collections" },
@@ -170,8 +176,24 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </a>
             </div>
 
+            <p className="mt-4 flex items-center justify-center gap-2 text-[12.5px] text-mist">
+              <ShieldCheck className="h-4 w-4 text-sage" aria-hidden="true" />
+              No advance lost — your deposit is held against your order
+            </p>
+
+            {/* Specifications */}
+            <div className="mt-8 border-t border-sand pt-7">
+              <h2 className="mb-3 font-display text-xl text-charcoal">Details</h2>
+              <ProductSpecs product={product} isMTO={isMTO} />
+            </div>
+
+            {/* Size guide */}
+            <div className="mt-6">
+              <SizeChart />
+            </div>
+
             {/* How it works */}
-            <div className="mt-7 rounded-2xl border border-sand bg-cream p-5">
+            <div className="mt-6 rounded-2xl border border-sand bg-cream p-5">
               <p className="font-display text-lg text-charcoal">How your order works</p>
               <ul className="mt-3 space-y-2 text-[13px] text-slate">
                 {[
@@ -188,16 +210,48 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </ul>
             </div>
 
-            <a
-              href="/measurement-guide"
-              className="mt-5 inline-flex items-center gap-2 text-[13px] font-medium text-terracotta hover:underline"
-            >
-              <Ruler className="h-4 w-4" aria-hidden="true" />
-              Not sure of your size? See the measurement guide
-            </a>
+            {/* Delivery & returns */}
+            <div className="mt-4 flex gap-3 rounded-2xl border border-sand bg-cream p-5">
+              <Truck className="mt-0.5 h-5 w-5 shrink-0 text-terracotta" aria-hidden="true" />
+              <div className="text-[13px] leading-6 text-slate">
+                <p className="font-semibold text-charcoal">Delivery & fitting</p>
+                <p className="mt-1">
+                  Collect in-store in Saddar, Rawalpindi, or have it couriered nationwide once
+                  ready. Send your measurements on WhatsApp if you can&apos;t visit — out-of-city
+                  grooms order with us every season. One free alteration within 7 days of collection.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Trust */}
+        <TrustBar className="mt-14" />
+
+        {/* Related */}
+        {related.length > 0 && (
+          <section className="mt-16" aria-labelledby="related-heading">
+            <h2 id="related-heading" className="font-display text-2xl font-light text-charcoal sm:text-3xl">
+              You may also like
+            </h2>
+            <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
+              {related.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
+
+      <StickyCta
+        productName={product.name}
+        sku={product.variants[0]?.sku}
+        productUrl={`${SITE.url}/products/${slug}`}
+        productId={product.id}
+        variantId={product.variants[0]?.id}
+        priceMinor={product.basePriceMinor}
+        isMTO={isMTO}
+      />
     </div>
   );
 }

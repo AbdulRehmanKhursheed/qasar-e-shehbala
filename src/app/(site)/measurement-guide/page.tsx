@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo";
-import { SITE } from "@/lib/constants";
+import { SITE, SIZE_CHART } from "@/lib/constants";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 
 export const metadata: Metadata = buildMetadata({
@@ -116,6 +116,45 @@ export default function MeasurementGuidePage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Standard size chart */}
+        <div className="mt-12">
+          <h2 className="font-display text-2xl font-normal text-charcoal">
+            Standard Size Chart
+          </h2>
+          <p className="mt-2 text-sm leading-6 text-mist">
+            A reference in {SIZE_CHART.units}. Everything we make is cut to your own
+            measurements, so use this only as a starting point.
+          </p>
+          <div className="mt-4 overflow-x-auto rounded-2xl border border-sand">
+            <table className="w-full border-collapse text-sm">
+              <thead>
+                <tr className="bg-linen text-left">
+                  {SIZE_CHART.columns.map((col) => (
+                    <th
+                      key={col}
+                      className="whitespace-nowrap px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-charcoal-soft"
+                    >
+                      {col}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {SIZE_CHART.rows.map((row) => (
+                  <tr key={row.size} className="border-t border-sand/70">
+                    <td className="px-4 py-3 font-semibold text-charcoal">{row.size}</td>
+                    <td className="px-4 py-3 text-slate">{row.chest}</td>
+                    <td className="px-4 py-3 text-slate">{row.waist}</td>
+                    <td className="px-4 py-3 text-slate">{row.shoulder}</td>
+                    <td className="px-4 py-3 text-slate">{row.sleeve}</td>
+                    <td className="px-4 py-3 text-slate">{row.length}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {/* Measurement table template */}

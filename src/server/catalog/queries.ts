@@ -115,6 +115,38 @@ export async function getFeaturedProducts(limit = 8): Promise<Product[]> {
   }, []);
 }
 
+export async function getRelatedProducts(
+  categorySlug: string | undefined,
+  excludeId: string,
+  limit = 4
+): Promise<Product[]> {
+  return safeQuery(async () => {
+    const records = await prisma.product.findMany({
+      where: {
+        isPublished: true,
+        id: { not: excludeId },
+        ...(categorySlug ? { category: { slug: categorySlug } } : {}),
+      },
+      include: productInclude,
+      orderBy: { createdAt: "desc" },
+      take: limit,
+    });
+
+    // Backfill from the wider catalog if a thin category leaves gaps.
+    if (records.length < limit) {
+      const extra = await prisma.product.findMany({
+        where: { isPublished: true, id: { notIn: [excludeId, ...records.map((r) => r.id)] } },
+        include: productInclude,
+        orderBy: { createdAt: "desc" },
+        take: limit - records.length,
+      });
+      records.push(...extra);
+    }
+
+    return records.map(toProduct);
+  }, []);
+}
+
 export async function searchProducts(query: string): Promise<Product[]> {
   if (query.trim().length < 2) return [];
   return safeQuery(async () => {
