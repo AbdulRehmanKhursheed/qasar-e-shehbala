@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { buildMetadata, collectionJsonLd } from "@/lib/seo";
-import { GROOM_CATEGORIES } from "@/lib/constants";
+import { GROOM_CATEGORIES, CATEGORY_SEO_COPY } from "@/lib/constants";
 import { getCategoryBySlug, getFabrics, getProducts } from "@/server/catalog/queries";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { FilterSidebar } from "@/components/collection/filter-sidebar";
@@ -101,6 +101,17 @@ export default async function CollectionPage({ params, searchParams }: Collectio
             />
           </div>
         </div>
+
+        {CATEGORY_SEO_COPY[slug] && (
+          <section className="mt-16 border-t border-sand pt-10">
+            <h2 className="font-display text-2xl font-light text-charcoal">
+              About our {name.toLowerCase()}
+            </h2>
+            <p className="mt-4 max-w-3xl text-[14px] leading-8 text-slate">
+              {CATEGORY_SEO_COPY[slug]}
+            </p>
+          </section>
+        )}
       </div>
     </div>
   );

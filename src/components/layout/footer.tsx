@@ -6,13 +6,14 @@ const LINKS = {
   Collections: [
     { label: "Sherwani", href: "/collections/sherwani" },
     { label: "Prince Coat", href: "/collections/prince-coat" },
-    { label: "Waistcoats", href: "/collections/waistcoats" },
-    { label: "Groom Packages", href: "/collections/groom-wear" },
+    { label: "Waistcoats", href: "/collections/waistcoat" },
+    { label: "Kurta Shalwar", href: "/collections/kurta-shalwar" },
+    { label: "Shop by Occasion", href: "/occasions" },
   ],
   Information: [
     { label: "About Us", href: "/about" },
     { label: "Blog & Guides", href: "/blog" },
-    { label: "Measurement Guide", href: "/measurement-guide" },
+    { label: "Size & Measurement Guide", href: "/measurement-guide" },
     { label: "Book Appointment", href: "/appointments" },
     { label: "Contact", href: "/contact" },
   ],

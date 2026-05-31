@@ -62,7 +62,7 @@ export default function HomePage() {
                 style={{ animationDelay: "240ms" }}
               >
                 <Link
-                  href="/collections/groom-wear"
+                  href="/collections"
                   className="inline-flex items-center gap-2 rounded-full bg-terracotta px-7 py-3.5 text-[14px] font-semibold text-cream shadow-sm transition-all hover:bg-terracotta-light hover:shadow-md"
                 >
                   Explore Groom Wear

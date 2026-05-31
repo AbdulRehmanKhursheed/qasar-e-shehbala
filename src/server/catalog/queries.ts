@@ -93,6 +93,19 @@ export async function getProducts(filters: FilterState = {}): Promise<Product[]>
   }, []);
 }
 
+export async function getProductsByCategories(slugs: string[], limit = 24): Promise<Product[]> {
+  if (slugs.length === 0) return [];
+  return safeQuery(async () => {
+    const records = await prisma.product.findMany({
+      where: { isPublished: true, category: { slug: { in: slugs } } },
+      include: productInclude,
+      orderBy: { createdAt: "desc" },
+      take: limit,
+    });
+    return records.map(toProduct);
+  }, []);
+}
+
 export async function getProductBySlug(slug: string): Promise<Product | null> {
   return safeQuery(async () => {
     const record = await prisma.product.findFirst({

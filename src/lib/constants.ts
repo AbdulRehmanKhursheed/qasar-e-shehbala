@@ -35,7 +35,7 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { label: "Collections", href: "/collections" },
-  { label: "Groom Wear", href: "/collections/groom-wear" },
+  { label: "Occasions", href: "/occasions" },
   { label: "Sherwani", href: "/collections/sherwani" },
   { label: "Prince Coat", href: "/collections/prince-coat" },
   { label: "Waistcoats", href: "/collections/waistcoat" },
@@ -127,6 +127,72 @@ export const TRUST_POINTS = [
   { label: "Master karigars", detail: "hand-finished" },
   { label: "Nationwide delivery", detail: "measurements by WhatsApp" },
 ] as const;
+
+/**
+ * How grooms actually shop — by function. Each occasion curates the relevant
+ * categories and doubles as a high-intent SEO landing page.
+ */
+export const OCCASIONS = [
+  {
+    slug: "barat",
+    label: "Barat",
+    romanUrdu: "Barat ki Sherwani",
+    tagline: "The showpiece. The grandest look of the wedding.",
+    categories: ["sherwani"],
+    intro:
+      "The barat is the groom's grandest entrance, and the sherwani is its centrepiece. These are our heaviest, most ornate pieces — velvet, jamawar and banarsi with hand zardozi, dabka and tilla — cut to measure for the man of the day.",
+    seo:
+      "For the barat, grooms in Rawalpindi and Islamabad come to Qasar-e-Shehbala for a sherwani that carries weight — literally and on camera. We have dressed barat grooms from our City Centre, Saddar workshop since 1999, working in rich velvets, structured jamawar and lustrous banarsi, finished with the hand embroidery a barat deserves. Every piece is made to your own naap, so the shoulder line, collar and chest sit exactly as they should in the photographs you will keep for life.",
+  },
+  {
+    slug: "walima",
+    label: "Walima",
+    romanUrdu: "Walima ka Libas",
+    tagline: "Sharper, refined — the reception look.",
+    categories: ["prince-coat", "sherwani"],
+    intro:
+      "The walima calls for something sharper and more refined than the barat. A tailored prince coat — clean lines, structured shoulder, easy to wear again — is the favourite, with a lighter sherwani as the dressier alternative.",
+    seo:
+      "Walima dressing is about restraint and polish. A made-to-measure prince coat in fine wool or suiting gives the groom a sharp, modern silhouette that works at the reception and long after the wedding. We cut every prince coat and walima sherwani to measure at our Saddar workshop, balancing a structured shoulder with a comfortable, re-wearable fit — the look grooms across Rawalpindi and Islamabad ask for season after season.",
+  },
+  {
+    slug: "mehndi",
+    label: "Mehndi",
+    romanUrdu: "Mehndi ka JoRa",
+    tagline: "Lighter, playful, full of colour.",
+    categories: ["kurta-shalwar", "waistcoat"],
+    intro:
+      "Mehndi is where colour and comfort win. Think a crisp kurta shalwar layered with an embroidered waistcoat — light enough to dance in, bright enough for the occasion.",
+    seo:
+      "The mehndi is the one function where a groom can have fun with colour. We make kurta shalwar and waistcoat sets that move well through a long night of dhol and dance, in mint, ivory, gold and deeper festive tones. Each set is tailored to measure at City Centre, Saddar — light, breathable and finished with the embroidery that makes a mehndi look feel special without weighing the groom down.",
+  },
+  {
+    slug: "nikah",
+    label: "Nikah",
+    romanUrdu: "Nikah ka Libas",
+    tagline: "Understated, elegant, off-white classics.",
+    categories: ["waistcoat", "kurta-shalwar", "prince-coat"],
+    intro:
+      "The nikah favours quiet elegance — an off-white or ivory kurta with a fine waistcoat, or a subtle prince coat. Refined, photographed close-up, and never loud.",
+    seo:
+      "Nikah dressing is understated by design. Grooms choose a crisp ivory or off-white kurta with a tailored waistcoat, or a clean prince coat, for a look that reads elegant in the intimate, close-up photographs of the ceremony. We tailor every nikah look to measure at our Saddar workshop, with the precise collar and fit that close photography demands.",
+  },
+] as const;
+
+/**
+ * Long-form, locally-relevant copy shown at the foot of each category page.
+ * Written for grooms and for search — mentions place, craft and occasion.
+ */
+export const CATEGORY_SEO_COPY: Record<string, string> = {
+  sherwani:
+    "A sherwani is the heart of Pakistani groom wear, and for the barat there is nothing that comes close. At Qasar-e-Shehbala we have been cutting made-to-measure sherwani at City Centre, Saddar in Rawalpindi since 1999 — for grooms from Pindi, Islamabad, and increasingly from across the country and abroad who send their measurements on WhatsApp. We work in velvet, jamawar and banarsi, finished by hand with zardozi, dabka and tilla. Because every sherwani is cut to your own naap, the shoulder, collar and chest sit exactly right — the difference between a sherwani that merely looks expensive and one that fits like it was made for you, because it was.",
+  "prince-coat":
+    "The prince coat is the modern groom's most versatile piece — sharp enough for the walima, refined enough to wear long after the wedding. Our prince coats are tailored to measure in fine wool blends and suiting at our Saddar workshop, with a structured shoulder and clean lines that flatter every build. Navy, charcoal and black remain the favourites for grooms in Rawalpindi and Islamabad, but we cut to your colour, your cloth and your exact measurements.",
+  waistcoat:
+    "A well-cut waistcoat lifts a simple kurta into a complete look — the go-to for mehndi, nikah and semi-formal functions. We make embroidered and plain waistcoats to measure at City Centre, Saddar, in banarsi, jamawar and fine suiting. Layered over a crisp kurta, a tailored waistcoat gives the groom and his close family a put-together, photograph-ready look without the weight of a full sherwani.",
+  "kurta-shalwar":
+    "Kurta shalwar is the most comfortable thing a groom can wear through a long function, and the easiest to dress up or down. Our made-to-measure kurta shalwar — crisp cottons for summer, richer fabrics for the cooler months — is cut at our Saddar workshop to sit cleanly and move well. Pair it with one of our embroidered waistcoats for mehndi or nikah, or wear it on its own for the festive days around the wedding.",
+};
 
 /** Event types for whatsapp_click analytics beacon. */
 export const ANALYTICS_EVENTS = {
