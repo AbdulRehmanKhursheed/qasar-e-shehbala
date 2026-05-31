@@ -23,7 +23,7 @@ export default function CollectionsPage() {
         <div className="mt-8 mb-12">
           <h1
             className="text-3xl font-bold text-gray-900 sm:text-4xl"
-            style={{ fontFamily: "Georgia, serif" }}
+            style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
           >
             All Collections
           </h1>
@@ -38,7 +38,7 @@ export default function CollectionsPage() {
             <Link
               key={cat.slug}
               href={`/collections/${cat.slug}`}
-              className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 hover:border-amber-200 hover:bg-amber-50 transition-colors"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 hover:border-jewel/20 hover:bg-jewel/8 transition-colors"
             >
               {/* Image placeholder */}
               <div className="aspect-[16/7] bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
@@ -49,7 +49,7 @@ export default function CollectionsPage() {
 
               <div className="p-6 flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-[#c9a227] uppercase tracking-wider">
+                  <p className="text-xs text-jewel uppercase tracking-wider">
                     {cat.romanUrdu}
                   </p>
                   <h2 className="mt-1 text-xl font-semibold text-gray-900">
@@ -57,7 +57,7 @@ export default function CollectionsPage() {
                   </h2>
                 </div>
                 <ArrowRight
-                  className="h-5 w-5 text-gray-400 transition-transform group-hover:translate-x-1 group-hover:text-[#c9a227]"
+                  className="h-5 w-5 text-gray-400 transition-transform group-hover:translate-x-1 group-hover:text-jewel"
                   aria-hidden="true"
                 />
               </div>

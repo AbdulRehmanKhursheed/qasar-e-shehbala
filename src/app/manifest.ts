@@ -1,0 +1,17 @@
+import type { MetadataRoute } from "next";
+import { SITE } from "@/lib/constants";
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: `${SITE.name} — ${SITE.tagline}`,
+    short_name: SITE.name,
+    description: SITE.description,
+    start_url: "/",
+    display: "standalone",
+    background_color: "#0e0a1c",
+    theme_color: "#0e0a1c",
+    icons: [
+      { src: SITE.logo, sizes: "any", type: "image/jpeg" },
+    ],
+  };
+}

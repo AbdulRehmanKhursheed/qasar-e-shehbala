@@ -7,7 +7,7 @@ const components = {
   h2: (props: ComponentPropsWithoutRef<"h2">) => (
     <h2
       className="mt-12 mb-4 text-2xl font-bold text-gray-900 scroll-mt-24"
-      style={{ fontFamily: "Georgia, serif" }}
+      style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
       {...props}
     />
   ),
@@ -18,10 +18,10 @@ const components = {
     <p className="my-4 text-base leading-8 text-gray-700" {...props} />
   ),
   ul: (props: ComponentPropsWithoutRef<"ul">) => (
-    <ul className="my-4 ml-5 list-disc space-y-2 text-gray-700 marker:text-[#c9a227]" {...props} />
+    <ul className="my-4 ml-5 list-disc space-y-2 text-gray-700 marker:text-jewel" {...props} />
   ),
   ol: (props: ComponentPropsWithoutRef<"ol">) => (
-    <ol className="my-4 ml-5 list-decimal space-y-2 text-gray-700 marker:text-[#c9a227]" {...props} />
+    <ol className="my-4 ml-5 list-decimal space-y-2 text-gray-700 marker:text-jewel" {...props} />
   ),
   li: (props: ComponentPropsWithoutRef<"li">) => <li className="leading-7 pl-1.5" {...props} />,
   strong: (props: ComponentPropsWithoutRef<"strong">) => (
@@ -29,7 +29,7 @@ const components = {
   ),
   blockquote: (props: ComponentPropsWithoutRef<"blockquote">) => (
     <blockquote
-      className="my-6 border-l-4 border-[#c9a227] bg-amber-50 py-3 pl-5 pr-4 text-gray-700 italic"
+      className="my-6 border-l-4 border-jewel bg-jewel/8 py-3 pl-5 pr-4 text-gray-700 italic"
       {...props}
     />
   ),
@@ -37,14 +37,14 @@ const components = {
   a: ({ href = "", ...props }: ComponentPropsWithoutRef<"a">) => {
     const isInternal = href.startsWith("/");
     if (isInternal) {
-      return <Link href={href} className="font-medium text-[#c9a227] underline-offset-2 hover:underline" {...props} />;
+      return <Link href={href} className="font-medium text-jewel underline-offset-2 hover:underline" {...props} />;
     }
     return (
       <a
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="font-medium text-[#c9a227] underline-offset-2 hover:underline"
+        className="font-medium text-jewel underline-offset-2 hover:underline"
         {...props}
       />
     );

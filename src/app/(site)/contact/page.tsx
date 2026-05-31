@@ -55,7 +55,7 @@ export default function ContactPage() {
           <div>
             <h1
               className="text-3xl font-bold text-gray-900 sm:text-4xl"
-              style={{ fontFamily: "Georgia, serif" }}
+              style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
             >
               Get in Touch
             </h1>
@@ -80,8 +80,8 @@ export default function ContactPage() {
             <dl className="mt-10 space-y-6">
               {CONTACT_ITEMS.map(({ icon: Icon, label, value, href, linkLabel }) => (
                 <div key={label} className="flex gap-4">
-                  <dt className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-50">
-                    <Icon className="h-5 w-5 text-[#c9a227]" aria-hidden="true" />
+                  <dt className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-jewel/8">
+                    <Icon className="h-5 w-5 text-jewel" aria-hidden="true" />
                   </dt>
                   <dd>
                     <p className="text-xs font-medium uppercase tracking-wider text-gray-400">
@@ -93,7 +93,7 @@ export default function ContactPage() {
                         href={href}
                         target={href.startsWith("http") ? "_blank" : undefined}
                         rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="mt-0.5 text-xs font-medium text-[#c9a227] hover:underline"
+                        className="mt-0.5 text-xs font-medium text-jewel hover:underline"
                       >
                         {linkLabel}
                       </a>

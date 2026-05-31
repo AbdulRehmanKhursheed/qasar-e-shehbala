@@ -20,12 +20,12 @@ export default function AboutPage() {
 
         {/* Hero text */}
         <div className="mt-10">
-          <p className="text-sm font-medium uppercase tracking-wider text-[#c9a227] mb-3">
+          <p className="text-sm font-medium uppercase tracking-wider text-jewel mb-3">
             Our Story
           </p>
           <h1
             className="text-4xl font-bold text-gray-900 sm:text-5xl"
-            style={{ fontFamily: "Georgia, serif" }}
+            style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
           >
             Crafting Groom Wear
             <br />
@@ -80,8 +80,8 @@ export default function AboutPage() {
         {/* Location */}
         <div className="mt-14 rounded-2xl bg-gray-50 p-8">
           <div className="flex items-start gap-4">
-            <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-50">
-              <MapPin className="h-5 w-5 text-[#c9a227]" aria-hidden="true" />
+            <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-jewel/8">
+              <MapPin className="h-5 w-5 text-jewel" aria-hidden="true" />
             </div>
             <div>
               <h2 className="text-base font-semibold text-gray-900">Visit Our Shop</h2>
@@ -99,7 +99,7 @@ export default function AboutPage() {
                 href={`https://maps.google.com/?q=${encodeURIComponent(`${SITE.name}, Saddar, Rawalpindi`)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center text-sm font-medium text-[#c9a227] hover:underline"
+                className="mt-3 inline-flex items-center text-sm font-medium text-jewel hover:underline"
               >
                 Open in Google Maps →
               </a>

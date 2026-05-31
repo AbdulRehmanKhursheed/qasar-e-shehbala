@@ -60,7 +60,7 @@ export function ContactForm() {
         </p>
         <button
           onClick={() => setStatus("idle")}
-          className="mt-4 text-sm font-medium text-[#c9a227] hover:underline"
+          className="mt-4 text-sm font-medium text-jewel hover:underline"
         >
           Send another message
         </button>
@@ -164,7 +164,7 @@ export function ContactForm() {
 function inputClass(hasError: boolean) {
   return [
     "w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400",
-    "focus:outline-none focus:ring-2 focus:ring-[#c9a227] focus:border-transparent",
+    "focus:outline-none focus:ring-2 focus:ring-royal focus:border-transparent",
     "transition-colors",
     hasError
       ? "border-red-300 bg-red-50"

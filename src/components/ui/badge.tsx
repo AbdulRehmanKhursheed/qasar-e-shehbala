@@ -2,22 +2,23 @@ import { cn } from "@/lib/utils";
 
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: "default" | "gold" | "green" | "outline";
+  variant?: "default" | "jewel" | "royal" | "outline" | "onDark";
   className?: string;
 }
 
 const variants = {
-  default: "bg-gray-100 text-gray-700",
-  gold: "bg-amber-50 text-[#a07d1a] border border-amber-200",
-  green: "bg-emerald-50 text-emerald-700 border border-emerald-200",
-  outline: "border border-gray-300 text-gray-600 bg-transparent",
+  default: "bg-ink/5 text-ink",
+  jewel: "bg-jewel/10 text-jewel border border-jewel/20",
+  royal: "bg-royal/10 text-royal border border-royal/20",
+  outline: "border border-ink/15 text-ink/70 bg-transparent",
+  onDark: "border border-ivory/20 text-ivory/85 bg-ivory/5",
 };
 
 export function Badge({ children, variant = "default", className }: BadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
+        "inline-flex items-center rounded-full px-3 py-1 text-xs font-medium tracking-wide",
         variants[variant],
         className
       )}

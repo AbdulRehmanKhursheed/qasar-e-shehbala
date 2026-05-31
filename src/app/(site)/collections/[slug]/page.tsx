@@ -68,12 +68,12 @@ export default async function CollectionPage({ params, searchParams }: Collectio
         />
 
         <header className="mt-8 mb-10">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-[#c9a227]">
+          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-jewel">
             {staticCategory.romanUrdu}
           </p>
           <h1
             className="text-3xl font-bold text-gray-900 sm:text-4xl"
-            style={{ fontFamily: "Georgia, serif" }}
+            style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
           >
             {name}
           </h1>

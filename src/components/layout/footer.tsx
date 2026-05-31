@@ -20,7 +20,7 @@ const FOOTER_LINKS = {
 
 export function Footer() {
   return (
-    <footer className="bg-[#0f0f0f] text-gray-300" aria-labelledby="footer-heading">
+    <footer className="bg-ink text-gray-300" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
@@ -31,11 +31,11 @@ export function Footer() {
           <div className="lg:col-span-1">
             <p
               className="text-2xl font-bold text-white"
-              style={{ fontFamily: "Georgia, serif" }}
+              style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
             >
               Qasr-e-Shehbala
             </p>
-            <p className="mt-1 text-xs tracking-[0.15em] text-[#c9a227] uppercase">
+            <p className="mt-1 text-xs tracking-[0.15em] text-jewel uppercase">
               Since {SITE.established}
             </p>
             <p className="mt-4 text-sm leading-6 text-gray-400 max-w-xs">
@@ -90,7 +90,7 @@ export function Footer() {
             <h3 className="text-sm font-semibold text-white">Visit Us</h3>
             <ul className="mt-4 space-y-3">
               <li className="flex gap-2.5 text-sm text-gray-400">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" aria-hidden="true" />
+                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-jewel" aria-hidden="true" />
                 <address className="not-italic">
                   {SITE.address.line1},{" "}
                   <span>{SITE.address.area},</span>
@@ -99,7 +99,7 @@ export function Footer() {
                 </address>
               </li>
               <li className="flex gap-2.5 text-sm">
-                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" aria-hidden="true" />
+                <Phone className="mt-0.5 h-4 w-4 shrink-0 text-jewel" aria-hidden="true" />
                 <a
                   href={`tel:${SITE.phone}`}
                   className="text-gray-400 hover:text-white transition-colors"
@@ -108,7 +108,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex gap-2.5 text-sm">
-                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" aria-hidden="true" />
+                <Mail className="mt-0.5 h-4 w-4 shrink-0 text-jewel" aria-hidden="true" />
                 <a
                   href={`mailto:${SITE.email}`}
                   className="text-gray-400 hover:text-white transition-colors"
@@ -117,7 +117,7 @@ export function Footer() {
                 </a>
               </li>
               <li className="flex gap-2.5 text-sm text-gray-400">
-                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-[#c9a227]" aria-hidden="true" />
+                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-jewel" aria-hidden="true" />
                 {SITE.openingHours}
               </li>
             </ul>

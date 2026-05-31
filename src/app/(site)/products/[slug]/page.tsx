@@ -131,13 +131,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
           {/* ── Product info ───────────────────────────────────────── */}
           <div className="flex flex-col">
             {categoryName && (
-              <p className="text-xs font-medium uppercase tracking-wider text-[#c9a227]">
+              <p className="text-xs font-medium uppercase tracking-wider text-jewel">
                 {categoryName}
               </p>
             )}
             <h1
               className="mt-2 text-3xl font-bold text-gray-900 sm:text-4xl"
-              style={{ fontFamily: "Georgia, serif" }}
+              style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
             >
               {product.name}
             </h1>
@@ -149,7 +149,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </p>
               )}
               {isMTO && (
-                <Badge variant="gold">Made to Measure</Badge>
+                <Badge variant="jewel">Made to Measure</Badge>
               )}
             </div>
 
@@ -208,7 +208,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             </div>
 
             {/* Policy reassurance */}
-            <div className="mt-6 rounded-xl bg-amber-50 p-4 text-sm text-gray-700 space-y-1.5">
+            <div className="mt-6 rounded-xl bg-jewel/8 p-4 text-sm text-gray-700 space-y-1.5">
               <p className="font-medium text-gray-900">How it works</p>
               <p>✓ Enquire on WhatsApp — we&apos;ll confirm measurements & fabric</p>
               <p>✓ Pay 30–50% advance deposit to begin tailoring</p>
@@ -221,7 +221,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               Not sure about your measurements?{" "}
               <a
                 href="/measurement-guide"
-                className="font-medium text-[#c9a227] hover:underline"
+                className="font-medium text-jewel hover:underline"
               >
                 See our measurement guide →
               </a>

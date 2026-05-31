@@ -18,7 +18,7 @@ export function buildMetadata(overrides: SeoOverrides = {}): Metadata {
   const canonical = overrides.slug
     ? `${SITE.url}/${overrides.slug.replace(/^\//, "")}`
     : SITE.url;
-  const ogImage = overrides.ogImage ?? `${SITE.url}/og-default.jpg`;
+  const ogImage = overrides.ogImage ?? `${SITE.url}${SITE.ogImage}`;
 
   return {
     title,
@@ -30,7 +30,7 @@ export function buildMetadata(overrides: SeoOverrides = {}): Metadata {
       description,
       url: canonical,
       siteName: SITE.name,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+      images: [{ url: ogImage, width: 1280, height: 1225, alt: title }],
       locale: "en_PK",
       type: overrides.type ?? "website",
     },
@@ -85,8 +85,8 @@ export function localBusinessJsonLd() {
         closes: "21:00",
       },
     ],
-    image: [`${SITE.url}/og-default.jpg`],
-    logo: `${SITE.url}/logo.svg`,
+    image: [`${SITE.url}${SITE.logo}`],
+    logo: `${SITE.url}${SITE.logo}`,
     sameAs: Object.values(SITE.social),
     hasMap: `https://maps.google.com/?q=${encodeURIComponent(
       `${SITE.name}, Saddar, Rawalpindi`
@@ -150,7 +150,7 @@ export function articleJsonLd(a: ArticleJsonLdParams) {
     "@type": "Article",
     headline: a.title,
     description: a.description,
-    image: a.ogImage ?? `${SITE.url}/og-default.jpg`,
+    image: a.ogImage ?? `${SITE.url}${SITE.ogImage}`,
     datePublished: a.publishedAt,
     dateModified: a.updatedAt ?? a.publishedAt,
     author: {
@@ -160,7 +160,7 @@ export function articleJsonLd(a: ArticleJsonLdParams) {
     publisher: {
       "@type": "Organization",
       name: SITE.name,
-      logo: { "@type": "ImageObject", url: `${SITE.url}/logo.svg` },
+      logo: { "@type": "ImageObject", url: `${SITE.url}${SITE.logo}` },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE.url}/blog/${a.slug}` },
   };

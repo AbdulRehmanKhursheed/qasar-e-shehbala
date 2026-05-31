@@ -47,7 +47,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
                 defaultValue={query}
                 placeholder="Search sherwani, prince coat, fabric…"
                 autoFocus
-                className="w-full rounded-xl border border-gray-200 bg-white pl-10 pr-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-[#c9a227] focus:outline-none focus:ring-2 focus:ring-[#c9a227] focus:ring-offset-0"
+                className="w-full rounded-xl border border-gray-200 bg-white pl-10 pr-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-royal focus:outline-none focus:ring-2 focus:ring-royal focus:ring-offset-0"
               />
             </div>
           </form>

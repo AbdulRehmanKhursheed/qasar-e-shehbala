@@ -68,7 +68,7 @@ export function FilterSidebar({ fabrics, currentFilters }: FilterSidebarProps) {
             variant="ghost"
             size="sm"
             onClick={clearAllFilters}
-            className="text-xs text-[#c9a227] hover:text-[#a07d1a]"
+            className="text-xs text-jewel hover:text-jewel"
           >
             <X className="h-3 w-3" aria-hidden="true" />
             Clear all
@@ -167,7 +167,7 @@ function RadioOption({
       className={cn(
         "flex cursor-pointer items-center gap-2.5 rounded-md px-2 py-1.5 text-sm transition-colors",
         checked
-          ? "bg-amber-50 text-[#a07d1a] font-medium"
+          ? "bg-jewel/8 text-jewel font-medium"
           : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
       )}
     >
@@ -181,7 +181,7 @@ function RadioOption({
       <span
         className={cn(
           "flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
-          checked ? "border-[#c9a227] bg-[#c9a227]" : "border-gray-300"
+          checked ? "border-jewel bg-jewel" : "border-gray-300"
         )}
         aria-hidden="true"
       >

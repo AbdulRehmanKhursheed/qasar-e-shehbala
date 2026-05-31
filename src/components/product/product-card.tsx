@@ -63,7 +63,7 @@ export function ProductCard({ product, priority = false, className }: ProductCar
         {/* Badges */}
         <div className="absolute left-3 top-3 flex flex-col gap-1.5">
           {isMTO && (
-            <Badge variant="gold">Made to Measure</Badge>
+            <Badge variant="jewel">Made to Measure</Badge>
           )}
         </div>
       </Link>
@@ -79,7 +79,7 @@ export function ProductCard({ product, priority = false, className }: ProductCar
         <h3 className="text-sm font-medium text-gray-900 leading-snug">
           <Link
             href={`/products/${product.slug}`}
-            className="hover:text-[#c9a227] transition-colors focus-visible:outline-none focus-visible:underline"
+            className="hover:text-jewel transition-colors focus-visible:outline-none focus-visible:underline"
           >
             {product.name}
           </Link>

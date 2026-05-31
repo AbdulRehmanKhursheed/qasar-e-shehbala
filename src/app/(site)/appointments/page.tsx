@@ -48,7 +48,7 @@ export default function AppointmentsPage() {
           <div>
             <h1
               className="text-3xl font-bold text-gray-900 sm:text-4xl"
-              style={{ fontFamily: "Georgia, serif" }}
+              style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
             >
               Book a Consultation
             </h1>
@@ -65,13 +65,13 @@ export default function AppointmentsPage() {
                   key={title}
                   className="flex gap-4 rounded-xl border border-gray-100 p-4"
                 >
-                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-50">
-                    <Icon className="h-4 w-4 text-[#c9a227]" aria-hidden="true" />
+                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-jewel/8">
+                    <Icon className="h-4 w-4 text-jewel" aria-hidden="true" />
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-gray-900">{title}</p>
                     <p className="text-xs text-gray-500 mt-0.5">{description}</p>
-                    <p className="text-xs text-[#c9a227] mt-1 font-medium">
+                    <p className="text-xs text-jewel mt-1 font-medium">
                       {duration}
                     </p>
                   </div>
@@ -82,14 +82,14 @@ export default function AppointmentsPage() {
             {/* Visit info */}
             <div className="mt-8 space-y-3 text-sm text-gray-600">
               <div className="flex items-center gap-2.5">
-                <MapPin className="h-4 w-4 text-[#c9a227] shrink-0" aria-hidden="true" />
+                <MapPin className="h-4 w-4 text-jewel shrink-0" aria-hidden="true" />
                 <span>
                   {SITE.address.line1}, {SITE.address.area},{" "}
                   {SITE.address.city}
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Clock className="h-4 w-4 text-[#c9a227] shrink-0" aria-hidden="true" />
+                <Clock className="h-4 w-4 text-jewel shrink-0" aria-hidden="true" />
                 <span>{SITE.openingHours}</span>
               </div>
             </div>

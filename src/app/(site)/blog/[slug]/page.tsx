@@ -65,7 +65,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <header className="mt-10 mb-10">
           <div className="flex flex-wrap gap-2 mb-4">
-            <Badge variant="gold">{post.category}</Badge>
+            <Badge variant="jewel">{post.category}</Badge>
             {post.tags.map((tag) => (
               <Badge key={tag} variant="outline">
                 {tag}
@@ -75,7 +75,7 @@ export default async function BlogPostPage({ params }: Props) {
 
           <h1
             className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl"
-            style={{ fontFamily: "Georgia, serif" }}
+            style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
           >
             {post.title}
           </h1>
@@ -96,7 +96,7 @@ export default async function BlogPostPage({ params }: Props) {
             <h2
               id="faq-heading"
               className="text-2xl font-bold text-gray-900 mb-6"
-              style={{ fontFamily: "Georgia, serif" }}
+              style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
             >
               Frequently Asked Questions
             </h2>
@@ -111,7 +111,7 @@ export default async function BlogPostPage({ params }: Props) {
           </section>
         )}
 
-        <aside className="mt-12 rounded-2xl bg-[#0f0f0f] p-8 text-center">
+        <aside className="mt-12 rounded-2xl bg-ink p-8 text-center">
           <p className="text-base font-semibold text-white">Ready to find your perfect groom wear?</p>
           <p className="mt-2 text-sm text-gray-400">
             Browse our collection or start a WhatsApp conversation with our team.
@@ -119,7 +119,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
               href="/collections/groom-wear"
-              className="inline-flex items-center justify-center rounded-xl bg-[#c9a227] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#a07d1a] transition-colors"
+              className="inline-flex items-center justify-center rounded-xl bg-jewel px-5 py-2.5 text-sm font-semibold text-white hover:bg-jewel transition-colors"
             >
               Browse Groom Wear
             </Link>

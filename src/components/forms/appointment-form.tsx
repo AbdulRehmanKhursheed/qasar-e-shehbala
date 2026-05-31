@@ -148,7 +148,7 @@ export function AppointmentForm() {
 const ic = (err: boolean) =>
   [
     "w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400",
-    "focus:outline-none focus:ring-2 focus:ring-[#c9a227] focus:border-transparent transition-colors",
+    "focus:outline-none focus:ring-2 focus:ring-royal focus:border-transparent transition-colors",
     err ? "border-red-300 bg-red-50" : "border-gray-200 bg-white hover:border-gray-300",
   ].join(" ");
 

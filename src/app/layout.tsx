@@ -1,21 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Geist } from "next/font/google";
+import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 
 import { JsonLd } from "@/components/seo/json-ld";
 import { localBusinessJsonLd } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 
-const geist = Geist({
-  variable: "--font-geist-sans",
+const fraunces = Fraunces({
   subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
+const hanken = Hanken_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-hanken",
   display: "swap",
 });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#c9a227",
+  themeColor: "#0e0a1c",
 };
 
 export const metadata: Metadata = {
@@ -25,6 +31,8 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
+  applicationName: SITE.name,
+  category: "shopping",
   keywords: [
     "sherwani",
     "prince coat",
@@ -38,8 +46,31 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: SITE.name, url: SITE.url }],
   creator: SITE.name,
-  openGraph: { type: "website", locale: "en_PK", url: SITE.url, siteName: SITE.name },
-  twitter: { card: "summary_large_image" },
+  publisher: SITE.name,
+  formatDetection: { telephone: true, address: true, email: true },
+  alternates: { canonical: SITE.url },
+  manifest: "/manifest.webmanifest",
+  icons: {
+    icon: [{ url: SITE.logo, type: "image/jpeg" }],
+    shortcut: [{ url: SITE.logo }],
+    apple: [{ url: SITE.logo }],
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_PK",
+    url: SITE.url,
+    siteName: SITE.name,
+    title: `${SITE.name} — ${SITE.tagline}`,
+    description: SITE.description,
+    images: [{ url: SITE.ogImage, width: 1280, height: 1225, alt: SITE.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE.name} — ${SITE.tagline}`,
+    description: SITE.description,
+    images: [SITE.ogImage],
+  },
+  appleWebApp: { capable: true, title: SITE.name, statusBarStyle: "black-translucent" },
   robots: {
     index: true,
     follow: true,
@@ -49,7 +80,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geist.variable} h-full`} suppressHydrationWarning>
+    <html lang="en" className={`${fraunces.variable} ${hanken.variable} h-full`} suppressHydrationWarning>
       <body className="min-h-full">
         <JsonLd data={localBusinessJsonLd()} />
         {children}

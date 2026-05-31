@@ -27,7 +27,7 @@ export default function BlogPage() {
         <header className="mt-10 mb-10">
           <h1
             className="text-3xl font-bold text-gray-900 sm:text-4xl"
-            style={{ fontFamily: "Georgia, serif" }}
+            style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
           >
             Groom Wear Guides
           </h1>
@@ -62,20 +62,20 @@ function FeaturedCard({ post }: { slug: string; post: PostMeta }) {
   return (
     <article className="rounded-2xl border border-gray-100 bg-gray-50 p-6 sm:p-8">
       <div className="flex flex-wrap items-center gap-2">
-        <Badge variant="gold">{post.category}</Badge>
+        <Badge variant="jewel">{post.category}</Badge>
         <time dateTime={post.date} className="text-xs text-gray-400">
           {formatDate(post.date)} · {post.readingMinutes} min read
         </time>
       </div>
-      <h2 className="mt-3 text-2xl font-semibold text-gray-900" style={{ fontFamily: "Georgia, serif" }}>
-        <Link href={`/blog/${post.slug}`} className="hover:text-[#c9a227] transition-colors">
+      <h2 className="mt-3 text-2xl font-semibold text-gray-900" style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}>
+        <Link href={`/blog/${post.slug}`} className="hover:text-jewel transition-colors">
           {post.title}
         </Link>
       </h2>
       <p className="mt-2 text-sm text-gray-600 leading-7">{post.description}</p>
       <Link
         href={`/blog/${post.slug}`}
-        className="mt-4 inline-flex items-center text-sm font-medium text-[#c9a227] hover:underline"
+        className="mt-4 inline-flex items-center text-sm font-medium text-jewel hover:underline"
       >
         Read article →
       </Link>
@@ -92,13 +92,13 @@ function PostRow({ post }: { post: PostMeta }) {
           {formatDate(post.date)} · {post.readingMinutes} min read
         </time>
       </div>
-      <h2 className="text-xl font-semibold text-gray-900 group-hover:text-[#c9a227] transition-colors">
+      <h2 className="text-xl font-semibold text-gray-900 group-hover:text-jewel transition-colors">
         <Link href={`/blog/${post.slug}`}>{post.title}</Link>
       </h2>
       <p className="mt-2 text-sm text-gray-600 leading-7">{post.description}</p>
       <Link
         href={`/blog/${post.slug}`}
-        className="mt-4 inline-flex items-center text-sm font-medium text-[#c9a227] hover:underline"
+        className="mt-4 inline-flex items-center text-sm font-medium text-jewel hover:underline"
       >
         Read article →
       </Link>

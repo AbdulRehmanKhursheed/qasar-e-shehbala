@@ -4,6 +4,8 @@ export const SITE = {
   description:
     "Rawalpindi's finest made-to-measure groom wear — sherwani, prince coats, waistcoats, and premium eastern menswear. Tailored by master karigars in Saddar since 1999.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://qasrshehbala.pk",
+  logo: "/logos/q-s-logo.jpeg",
+  ogImage: "/logos/q-s-logo.jpeg",
   phone: process.env.NEXT_PUBLIC_PHONE ?? "+92 300 0000000",
   whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "923000000000",
   email: process.env.NEXT_PUBLIC_EMAIL ?? "info@qasrshehbala.pk",

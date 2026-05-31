@@ -66,12 +66,12 @@ export default function MeasurementGuidePage() {
         />
 
         <div className="mt-10">
-          <p className="text-sm font-medium uppercase tracking-wider text-[#c9a227] mb-3">
+          <p className="text-sm font-medium uppercase tracking-wider text-jewel mb-3">
             Made-to-Measure
           </p>
           <h1
             className="text-3xl font-bold text-gray-900 sm:text-4xl"
-            style={{ fontFamily: "Georgia, serif" }}
+            style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
           >
             Sherwani Measurement Guide
           </h1>
@@ -84,7 +84,7 @@ export default function MeasurementGuidePage() {
         </div>
 
         {/* What you need */}
-        <div className="mt-10 rounded-2xl bg-amber-50 p-6">
+        <div className="mt-10 rounded-2xl bg-jewel/8 p-6">
           <h2 className="text-base font-semibold text-gray-900 mb-3">
             What you need
           </h2>
@@ -107,7 +107,7 @@ export default function MeasurementGuidePage() {
               key={m.name}
               className="flex gap-4 rounded-xl border border-gray-100 p-5"
             >
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#0f0f0f] text-xs font-bold text-white">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink text-xs font-bold text-white">
                 {i + 1}
               </div>
               <div className="flex-1">
@@ -123,7 +123,7 @@ export default function MeasurementGuidePage() {
 
         {/* Measurement table template */}
         <div className="mt-10 rounded-2xl border border-gray-200 overflow-hidden">
-          <div className="bg-[#0f0f0f] px-5 py-3">
+          <div className="bg-ink px-5 py-3">
             <h2 className="text-sm font-semibold text-white">Measurement Template</h2>
             <p className="text-xs text-gray-400">Copy this and fill it in before sending to us on WhatsApp</p>
           </div>
