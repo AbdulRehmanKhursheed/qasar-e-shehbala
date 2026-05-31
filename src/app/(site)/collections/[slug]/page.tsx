@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, collectionJsonLd } from "@/lib/seo";
 import { GROOM_CATEGORIES } from "@/lib/constants";
 import { getCategoryBySlug, getFabrics, getProducts } from "@/server/catalog/queries";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { FilterSidebar } from "@/components/collection/filter-sidebar";
 import { ProductGrid } from "@/components/product/product-grid";
+import { JsonLd } from "@/components/seo/json-ld";
 import type { FilterState } from "@/types";
 
 interface CollectionPageProps {
@@ -59,6 +60,14 @@ export default async function CollectionPage({ params, searchParams }: Collectio
 
   return (
     <div className="min-h-screen bg-parchment">
+      <JsonLd
+        data={collectionJsonLd({
+          name,
+          description: category?.introCopy ?? category?.metaDescription ?? undefined,
+          slug,
+          products: products.map((p) => ({ slug: p.slug, name: p.name })),
+        })}
+      />
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <Breadcrumb
           items={[

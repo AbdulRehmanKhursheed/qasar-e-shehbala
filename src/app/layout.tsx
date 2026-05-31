@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { JsonLd } from "@/components/seo/json-ld";
-import { localBusinessJsonLd } from "@/lib/seo";
+import { localBusinessJsonLd, websiteJsonLd } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 
 const cormorant = Cormorant_Garamond({
@@ -67,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${cormorant.variable} ${jakarta.variable} h-full`} suppressHydrationWarning>
       <body className="min-h-full">
-        <JsonLd data={localBusinessJsonLd()} />
+        <JsonLd data={[localBusinessJsonLd(), websiteJsonLd()]} />
         {children}
       </body>
     </html>

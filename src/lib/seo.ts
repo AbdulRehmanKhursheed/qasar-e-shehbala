@@ -93,6 +93,57 @@ export function localBusinessJsonLd() {
   };
 }
 
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE.url}/#website`,
+    url: SITE.url,
+    name: SITE.name,
+    description: SITE.description,
+    inLanguage: "en-PK",
+    publisher: { "@id": `${SITE.url}/#organization` },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE.url}/search?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+}
+
+interface CollectionJsonLdParams {
+  name: string;
+  description?: string;
+  slug: string;
+  products: { slug: string; name: string }[];
+}
+
+export function collectionJsonLd(c: CollectionJsonLdParams) {
+  const url = `${SITE.url}/collections/${c.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": url,
+    url,
+    name: c.name,
+    description: c.description,
+    isPartOf: { "@id": `${SITE.url}/#website` },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: c.products.length,
+      itemListElement: c.products.map((p, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `${SITE.url}/products/${p.slug}`,
+        name: p.name,
+      })),
+    },
+  };
+}
+
 interface ProductJsonLdParams {
   name: string;
   description?: string;
@@ -104,6 +155,9 @@ interface ProductJsonLdParams {
 }
 
 export function productJsonLd(p: ProductJsonLdParams) {
+  const priceValidUntil = new Date();
+  priceValidUntil.setFullYear(priceValidUntil.getFullYear() + 1);
+
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -120,6 +174,8 @@ export function productJsonLd(p: ProductJsonLdParams) {
       url: `${SITE.url}/products/${p.slug}`,
       priceCurrency: "PKR",
       price: p.priceRupees,
+      priceValidUntil: priceValidUntil.toISOString().split("T")[0],
+      itemCondition: "https://schema.org/NewCondition",
       availability: p.inStock
         ? "https://schema.org/InStock"
         : "https://schema.org/PreOrder",
