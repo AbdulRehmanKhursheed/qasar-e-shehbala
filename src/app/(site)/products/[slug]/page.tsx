@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Phone, Truck, ShieldCheck } from "lucide-react";
-import { buildMetadata, productJsonLd } from "@/lib/seo";
+import { buildMetadata, productJsonLd, faqJsonLd } from "@/lib/seo";
 import { formatPKR } from "@/lib/utils";
-import { SITE } from "@/lib/constants";
+import { SITE, CATEGORY_FAQS, DEFAULT_FAQS } from "@/lib/constants";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Badge } from "@/components/ui/badge";
@@ -51,15 +51,20 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const categoryName = product.category?.name;
   const related = await getRelatedProducts(product.category?.slug, product.id);
 
-  const structuredData = productJsonLd({
-    name: product.name,
-    description: product.description ?? undefined,
-    images: product.images.map((img) => img.r2Key),
-    priceRupees,
-    sku: product.variants[0]?.sku,
-    slug,
-    inStock: true,
-  });
+  const faqs = (product.category && CATEGORY_FAQS[product.category.slug]) || DEFAULT_FAQS;
+
+  const structuredData: Record<string, unknown>[] = [
+    productJsonLd({
+      name: product.name,
+      description: product.description ?? undefined,
+      images: product.images.map((img) => img.r2Key),
+      priceRupees,
+      sku: product.variants[0]?.sku,
+      slug,
+      inStock: true,
+    }),
+    faqJsonLd(faqs),
+  ];
 
   return (
     <div className="min-h-screen bg-parchment">
@@ -227,6 +232,21 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
         {/* Trust */}
         <TrustBar className="mt-14" />
+
+        {/* FAQ */}
+        <section className="mt-16 border-t border-sand pt-10" aria-labelledby="product-faq">
+          <h2 id="product-faq" className="font-display text-2xl font-light text-charcoal sm:text-3xl">
+            Questions, answered
+          </h2>
+          <dl className="mt-6 max-w-3xl divide-y divide-sand">
+            {faqs.map((faq) => (
+              <div key={faq.question} className="py-4">
+                <dt className="text-[15px] font-semibold text-charcoal">{faq.question}</dt>
+                <dd className="mt-2 text-[14px] leading-7 text-slate">{faq.answer}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
 
         {/* Related */}
         {related.length > 0 && (

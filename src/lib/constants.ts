@@ -227,6 +227,67 @@ export const PRICE_BUCKETS = [
   { label: "Over ₨150,000", minPrice: 150000, maxPrice: undefined },
 ] as const;
 
+/**
+ * Per-category FAQs shown on product pages and emitted as FAQPage structured
+ * data (FAQ rich results). Answers reflect the real made-to-measure workflow.
+ */
+const COMMON_FAQS = [
+  {
+    question: "Can I order from another city or from abroad?",
+    answer:
+      "Yes. Many of our grooms order from Islamabad, across Pakistan and overseas. Share your measurements on WhatsApp and we courier the finished garment to you, or you collect it in-store at City Centre, Saddar.",
+  },
+  {
+    question: "How does payment work?",
+    answer:
+      "A 30–50% advance secures your fabric and starts the tailoring. The balance is collected at the final fitting or on delivery. We accept cash, bank transfer, Raast, JazzCash and Easypaisa.",
+  },
+];
+
+export const CATEGORY_FAQS: Record<string, { question: string; answer: string }[]> = {
+  sherwani: [
+    {
+      question: "How long does a made-to-measure sherwani take?",
+      answer: `A made-to-measure sherwani is typically ready in ${SITE.defaultLeadTimeDays} working days. During peak wedding season we recommend ordering 4–6 weeks ahead to allow time for fittings.`,
+    },
+    {
+      question: "What is included with the sherwani?",
+      answer:
+        "The price includes the sherwani, an inner kurta and a shalwar or churidar pajama, all cut to your measurements. Accessories such as a kulla, stole or khussa can be added.",
+    },
+    ...COMMON_FAQS,
+  ],
+  "prince-coat": [
+    {
+      question: "How long does a prince coat take to stitch?",
+      answer: `A made-to-measure prince coat is usually ready in ${SITE.defaultLeadTimeDays} working days, plus a fitting. Order earlier during peak wedding months.`,
+    },
+    {
+      question: "Is the trouser included with the prince coat?",
+      answer: "Yes — the price includes the prince coat and a matching trouser, both tailored to measure.",
+    },
+    ...COMMON_FAQS,
+  ],
+  waistcoat: [
+    {
+      question: "Can the waistcoat be made to match my kurta?",
+      answer:
+        "Yes. We tailor the waistcoat to your measurements and can match or complement your kurta in fabric and tone. Share a reference on WhatsApp.",
+    },
+    ...COMMON_FAQS,
+  ],
+  "kurta-shalwar": [
+    {
+      question: "Is the kurta shalwar made to measure?",
+      answer:
+        "Yes, every kurta shalwar is cut to your own measurements at our Saddar workshop, in your choice of fabric for the season.",
+    },
+    ...COMMON_FAQS,
+  ],
+};
+
+export const DEFAULT_FAQS = COMMON_FAQS;
+
 /** Event types for whatsapp_click analytics beacon. */
 export const ANALYTICS_EVENTS = {
   WHATSAPP_CLICK: "whatsapp_click",
