@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE, GROOM_CATEGORIES } from "@/lib/constants";
+import { getAllPosts } from "@/lib/blog";
 
 /**
  * Dynamic sitemap — auto-generated from static routes + DB content.
@@ -60,17 +61,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Category routes
   const categoryRoutes: MetadataRoute.Sitemap = GROOM_CATEGORIES.map((cat) => ({
     url: `${SITE.url}/collections/${cat.slug}`,
     lastModified: now,
-    changeFrequency: "weekly" as const,
+    changeFrequency: "weekly",
     priority: 0.85,
   }));
 
-  // TODO: fetch product slugs and blog slugs from DB in Phase 2
-  // const products = await prisma.product.findMany({ where: { isPublished: true }, select: { slug: true, updatedAt: true } });
-  // const productRoutes = products.map(p => ({ url: `${SITE.url}/products/${p.slug}`, lastModified: p.updatedAt, ... }));
+  const blogRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+    url: `${SITE.url}/blog/${post.slug}`,
+    lastModified: new Date(post.updated ?? post.date),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
 
-  return [...staticRoutes, ...categoryRoutes];
+  // TODO: append published product slugs from the DB in Phase 2
+
+  return [...staticRoutes, ...categoryRoutes, ...blogRoutes];
 }
