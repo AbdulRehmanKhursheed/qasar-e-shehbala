@@ -18,7 +18,7 @@ const CONTACT_ITEMS = [
     icon: MapPin,
     label: "Address",
     value: `${SITE.address.line1}, ${SITE.address.area}, ${SITE.address.city}`,
-    href: `https://maps.google.com/?q=${encodeURIComponent(`${SITE.name}, Saddar, Rawalpindi`)}`,
+    href: SITE.address.googleMapsUrl,
     linkLabel: "Get directions →",
   },
   {

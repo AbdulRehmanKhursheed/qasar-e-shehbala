@@ -9,9 +9,22 @@ export default function cloudflareImageLoader({
   width,
   quality = 80,
 }: ImageLoaderProps): string {
-  const baseUrl = process.env.NEXT_PUBLIC_CF_IMAGES_URL;
+  // Full external URL (Unsplash, Pexels, etc.) — pass through with size params
+  if (src.startsWith("https://") || src.startsWith("http://")) {
+    if (src.includes("unsplash.com")) {
+      const params = new URLSearchParams({
+        w: String(width),
+        q: String(quality),
+        auto: "format",
+        fit: "crop",
+      });
+      return src.includes("?") ? `${src}&${params}` : `${src}?${params}`;
+    }
+    return src;
+  }
 
-  if (!baseUrl || process.env.NODE_ENV === "development") {
+  const baseUrl = process.env.NEXT_PUBLIC_CF_IMAGES_URL;
+  if (!baseUrl) {
     const params = new URLSearchParams({ w: String(width), q: String(quality) });
     return src.includes("?") ? `${src}&${params}` : `${src}?${params}`;
   }

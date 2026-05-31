@@ -73,24 +73,21 @@ export function localBusinessJsonLd() {
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-        ],
+        dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
         opens: "10:00",
-        closes: "21:00",
+        closes: "23:00",
       },
     ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: SITE.rating.value,
+      reviewCount: SITE.rating.count,
+      bestRating: 5,
+    },
     image: [`${SITE.url}${SITE.logo}`],
     logo: `${SITE.url}${SITE.logo}`,
     sameAs: Object.values(SITE.social),
-    hasMap: `https://maps.google.com/?q=${encodeURIComponent(
-      `${SITE.name}, Saddar, Rawalpindi`
-    )}`,
+    hasMap: SITE.address.googleMapsUrl,
     currenciesAccepted: "PKR",
     paymentAccepted: "Cash, Bank Transfer, JazzCash, Easypaisa, Raast",
   };

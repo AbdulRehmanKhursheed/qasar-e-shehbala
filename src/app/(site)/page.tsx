@@ -302,7 +302,7 @@ export default function HomePage() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
-              href={`https://maps.google.com/?q=${encodeURIComponent("Qasar-e-Shehbala, Saddar, Rawalpindi")}`}
+              href={`SITE.address.googleMapsUrl`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-sand px-6 py-3 text-[13px] font-medium text-slate transition-colors hover:border-terracotta hover:text-terracotta"

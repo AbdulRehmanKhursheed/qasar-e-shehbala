@@ -80,7 +80,7 @@ export function Footer() {
             <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-parchment/40">Visit Us</p>
             <ul className="space-y-3">
               {[
-                { icon: MapPin, content: `${SITE.address.line1}, ${SITE.address.area}, ${SITE.address.city}`, href: `https://maps.google.com/?q=${encodeURIComponent("Qasar-e-Shehbala, Saddar, Rawalpindi")}` },
+                { icon: MapPin, content: `${SITE.address.line1}, ${SITE.address.area}, ${SITE.address.city}`, href: SITE.address.googleMapsUrl },
                 { icon: Phone, content: SITE.phone, href: `tel:${SITE.phone}` },
                 { icon: Mail, content: SITE.email, href: `mailto:${SITE.email}` },
                 { icon: Clock, content: SITE.openingHours, href: null },
