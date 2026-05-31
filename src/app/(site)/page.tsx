@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, Clock, Star, Scissors, Ruler, MapPin, Phone } from "lucide-react";
 import { buildMetadata } from "@/lib/seo";
 import { SITE, GROOM_CATEGORIES } from "@/lib/constants";
+import { Reviews } from "@/components/ui/reviews";
 
 export const metadata: Metadata = buildMetadata();
 export const revalidate = 3600;
@@ -80,13 +81,28 @@ export default function HomePage() {
 
               {/* Micro trust strip */}
               <div
-                className="animate-fade-up mt-12 flex items-center gap-5 border-t border-sand pt-6"
+                className="animate-fade-up mt-12 flex items-center gap-6 border-t border-sand pt-6"
                 style={{ animationDelay: "320ms" }}
               >
+                <div className="flex items-center gap-2.5">
+                  <div className="flex gap-0.5" aria-hidden="true">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-brass text-brass" />
+                    ))}
+                  </div>
+                  <div className="leading-tight">
+                    <p className="font-display text-lg font-semibold text-charcoal">
+                      {SITE.rating.value.toFixed(1)}
+                    </p>
+                    <p className="text-[10px] uppercase tracking-wider text-mist">
+                      {SITE.rating.count} reviews
+                    </p>
+                  </div>
+                </div>
+                <span className="h-8 w-px bg-sand" aria-hidden="true" />
                 {[
                   { n: "25+", l: "Years" },
                   { n: "1000+", l: "Grooms" },
-                  { n: "15", l: "Day delivery" },
                 ].map(({ n, l }) => (
                   <div key={l} className="text-center">
                     <p className="font-display text-2xl font-semibold text-charcoal">{n}</p>
@@ -290,19 +306,22 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Reviews ──────────────────────────────────────────── */}
+      <Reviews />
+
       {/* ── Visit us ─────────────────────────────────────────── */}
-      <section className="py-16 bg-parchment" aria-label="Visit the shop">
+      <section className="border-t border-sand py-16 bg-parchment" aria-label="Visit the shop">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-terracotta mb-3">Come see us</p>
           <h2 className="font-display text-[2.2rem] font-light text-charcoal">
-            Saddar Road, Rawalpindi
+            Bank Road, Saddar — Rawalpindi
           </h2>
           <p className="mt-3 text-[14px] text-mist">
-            Our karigars are here Monday through Saturday, 10am to 9pm.
+            Our karigars are here every day, 10am to 11pm. Walk in, or message ahead on WhatsApp.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
-              href={`SITE.address.googleMapsUrl`}
+              href={SITE.address.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-sand px-6 py-3 text-[13px] font-medium text-slate transition-colors hover:border-terracotta hover:text-terracotta"
