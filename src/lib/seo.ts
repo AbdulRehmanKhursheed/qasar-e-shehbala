@@ -52,6 +52,8 @@ export function localBusinessJsonLd() {
     "@type": "ClothingStore",
     "@id": `${SITE.url}/#organization`,
     name: SITE.name,
+    legalName: SITE.legalName,
+    alternateName: SITE.legalName,
     description: SITE.description,
     url: SITE.url,
     telephone: SITE.phone,
@@ -67,8 +69,8 @@ export function localBusinessJsonLd() {
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 33.6007,
-      longitude: 73.0679,
+      latitude: SITE.geo.lat,
+      longitude: SITE.geo.lng,
     },
     openingHoursSpecification: [
       {

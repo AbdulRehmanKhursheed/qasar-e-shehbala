@@ -1,9 +1,13 @@
 export const SITE = {
   name: "Qasar-e-Shehbala",
+  /** Exact name on the Google Business listing — used in structured data so Google links site ↔ listing. */
+  legalName: "Qasar E Shehbala And Groom House Attires",
   tagline: "Premium Groom Wear Since 1999",
   description:
     "Rawalpindi's finest made-to-measure groom wear — sherwani, prince coats, waistcoats, and premium eastern menswear. Tailored by master karigars in Saddar since 1999. Rated 5.0 by over 138 happy grooms.",
   rating: { value: 5.0, count: 138 },
+  /** Precise coordinates from the Google Business listing. */
+  geo: { lat: 33.5984375, lng: 73.0485625 },
   url:
     process.env.NEXT_PUBLIC_SITE_URL ??
     (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"),
@@ -193,6 +197,14 @@ export const CATEGORY_SEO_COPY: Record<string, string> = {
   "kurta-shalwar":
     "Kurta shalwar is the most comfortable thing a groom can wear through a long function, and the easiest to dress up or down. Our made-to-measure kurta shalwar — crisp cottons for summer, richer fabrics for the cooler months — is cut at our Saddar workshop to sit cleanly and move well. Pair it with one of our embroidered waistcoats for mehndi or nikah, or wear it on its own for the festive days around the wedding.",
 };
+
+/**
+ * Real customer reviews, pasted verbatim from the Google listing. Left empty on
+ * purpose — fill with actual review excerpts (quote + first name + city) so the
+ * site never shows invented testimonials. Until then the home page shows only the
+ * real aggregate rating and a link to the live Google reviews.
+ */
+export const GOOGLE_REVIEWS: { quote: string; name: string; occasion: string }[] = [];
 
 /** Event types for whatsapp_click analytics beacon. */
 export const ANALYTICS_EVENTS = {
