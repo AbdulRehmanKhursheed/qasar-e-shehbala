@@ -51,16 +51,16 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl bg-emerald-50 p-8 text-center">
-        <CheckCircle className="mx-auto h-10 w-10 text-emerald-500 mb-4" aria-hidden="true" />
-        <h3 className="text-base font-semibold text-gray-900">Message received!</h3>
-        <p className="mt-2 text-sm text-gray-600">
-          We&apos;ll get back to you via WhatsApp shortly. For faster response,
+      <div className="rounded-2xl border border-sage/30 bg-sage-pale p-8 text-center">
+        <CheckCircle className="mx-auto mb-4 h-10 w-10 text-sage" aria-hidden="true" />
+        <h3 className="font-display text-xl font-normal text-charcoal">Message received</h3>
+        <p className="mt-2 text-sm text-slate">
+          We&apos;ll get back to you via WhatsApp shortly. For a faster response,
           you can also message us directly.
         </p>
         <button
           onClick={() => setStatus("idle")}
-          className="mt-4 text-sm font-medium text-jewel hover:underline"
+          className="mt-4 text-sm font-medium text-terracotta hover:underline"
         >
           Send another message
         </button>
@@ -163,12 +163,12 @@ export function ContactForm() {
 
 function inputClass(hasError: boolean) {
   return [
-    "w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400",
-    "focus:outline-none focus:ring-2 focus:ring-royal focus:border-transparent",
+    "w-full rounded-lg border px-3.5 py-2.5 text-sm text-charcoal placeholder-mist",
+    "focus:outline-none focus:ring-2 focus:ring-terracotta/40 focus:border-terracotta",
     "transition-colors",
     hasError
       ? "border-red-300 bg-red-50"
-      : "border-gray-200 bg-white hover:border-gray-300",
+      : "border-sand bg-cream hover:border-mist",
   ].join(" ");
 }
 
@@ -185,7 +185,7 @@ function Field({
     <div>
       <label
         htmlFor={(children as React.ReactElement<{ id: string }>).props?.id}
-        className="mb-1.5 block text-sm font-medium text-gray-700"
+        className="mb-1.5 block text-sm font-medium text-charcoal-soft"
       >
         {label}
       </label>

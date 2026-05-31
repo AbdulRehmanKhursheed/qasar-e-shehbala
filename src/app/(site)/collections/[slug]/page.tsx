@@ -58,7 +58,7 @@ export default async function CollectionPage({ params, searchParams }: Collectio
   const name = category?.name ?? staticCategory.label;
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen bg-parchment">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <Breadcrumb
           items={[
@@ -67,28 +67,23 @@ export default async function CollectionPage({ params, searchParams }: Collectio
           ]}
         />
 
-        <header className="mt-8 mb-10">
-          <p className="mb-2 text-xs font-medium uppercase tracking-wider text-jewel">
+        <header className="mt-8 mb-10 max-w-2xl">
+          <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-terracotta">
             {staticCategory.romanUrdu}
           </p>
-          <h1
-            className="text-3xl font-bold text-gray-900 sm:text-4xl"
-            style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
-          >
-            {name}
-          </h1>
+          <h1 className="font-display text-4xl font-light text-charcoal sm:text-5xl">{name}</h1>
           {category?.introCopy && (
-            <p className="mt-3 max-w-2xl text-gray-500 leading-7">{category.introCopy}</p>
+            <p className="mt-4 text-[15px] leading-7 text-mist">{category.introCopy}</p>
           )}
         </header>
 
-        <div className="flex flex-col gap-8 lg:flex-row">
+        <div className="flex flex-col gap-10 lg:flex-row">
           <div className="hidden w-56 shrink-0 lg:block">
             <FilterSidebar fabrics={fabrics} currentFilters={filters} />
           </div>
 
           <div className="flex-1">
-            <p className="mb-4 text-sm text-gray-500">
+            <p className="mb-5 text-sm text-mist">
               {products.length} {products.length === 1 ? "garment" : "garments"}
             </p>
             <ProductGrid

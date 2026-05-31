@@ -46,20 +46,20 @@ const CONTACT_ITEMS = [
 
 export default function ContactPage() {
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen bg-parchment">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Breadcrumb items={[{ name: "Contact", href: "/contact" }]} />
 
         <div className="mt-10 grid grid-cols-1 gap-16 lg:grid-cols-2">
           {/* Info */}
           <div>
-            <h1
-              className="text-3xl font-bold text-gray-900 sm:text-4xl"
-              style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
-            >
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-terracotta">
+              We&apos;d love to hear from you
+            </p>
+            <h1 className="font-display text-4xl font-light text-charcoal sm:text-5xl">
               Get in Touch
             </h1>
-            <p className="mt-4 text-gray-500 leading-7">
+            <p className="mt-4 max-w-md text-[15px] leading-7 text-mist">
               Whether you want to discuss a custom sherwani, book a consultation, or
               simply have questions — we&apos;re here. WhatsApp is the fastest way
               to reach us.
@@ -80,20 +80,20 @@ export default function ContactPage() {
             <dl className="mt-10 space-y-6">
               {CONTACT_ITEMS.map(({ icon: Icon, label, value, href, linkLabel }) => (
                 <div key={label} className="flex gap-4">
-                  <dt className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-jewel/8">
-                    <Icon className="h-5 w-5 text-jewel" aria-hidden="true" />
+                  <dt className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-terracotta-pale">
+                    <Icon className="h-5 w-5 text-terracotta" aria-hidden="true" />
                   </dt>
                   <dd>
-                    <p className="text-xs font-medium uppercase tracking-wider text-gray-400">
+                    <p className="text-xs font-medium uppercase tracking-[0.16em] text-mist">
                       {label}
                     </p>
-                    <p className="mt-0.5 text-sm text-gray-700">{value}</p>
+                    <p className="mt-0.5 text-sm text-charcoal-soft">{value}</p>
                     {href && linkLabel && (
                       <a
                         href={href}
                         target={href.startsWith("http") ? "_blank" : undefined}
                         rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="mt-0.5 text-xs font-medium text-jewel hover:underline"
+                        className="mt-0.5 inline-block text-xs font-medium text-terracotta hover:underline"
                       >
                         {linkLabel}
                       </a>
@@ -105,8 +105,8 @@ export default function ContactPage() {
           </div>
 
           {/* Contact form */}
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">
+          <div className="rounded-2xl border border-sand bg-cream p-6 shadow-sm sm:p-8">
+            <h2 className="mb-6 font-display text-2xl font-normal text-charcoal">
               Send us a Message
             </h2>
             <ContactForm />

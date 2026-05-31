@@ -52,7 +52,7 @@ export default async function BlogPostPage({ params }: Props) {
   if (post.faqs.length > 0) structuredData.push(faqJsonLd(post.faqs));
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen bg-parchment">
       <JsonLd data={structuredData} />
 
       <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
@@ -64,7 +64,7 @@ export default async function BlogPostPage({ params }: Props) {
         />
 
         <header className="mt-10 mb-10">
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="mb-4 flex flex-wrap gap-2">
             <Badge variant="terracotta">{post.category}</Badge>
             {post.tags.map((tag) => (
               <Badge key={tag} variant="outline">
@@ -73,61 +73,54 @@ export default async function BlogPostPage({ params }: Props) {
             ))}
           </div>
 
-          <h1
-            className="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl"
-            style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
-          >
+          <h1 className="font-display text-4xl font-light leading-tight text-charcoal sm:text-5xl">
             {post.title}
           </h1>
 
-          <div className="mt-4 flex items-center gap-3 text-sm text-gray-500">
+          <div className="mt-4 flex items-center gap-3 text-sm text-mist">
             <time dateTime={post.date}>{formatDate(post.date)}</time>
             <span aria-hidden="true">·</span>
             <span>{post.readingMinutes} min read</span>
           </div>
         </header>
 
-        <div className="text-gray-700">
-          <MdxContent source={post.content} />
-        </div>
+        <MdxContent source={post.content} />
 
         {post.faqs.length > 0 && (
-          <section className="mt-14 border-t border-gray-100 pt-10" aria-labelledby="faq-heading">
-            <h2
-              id="faq-heading"
-              className="text-2xl font-bold text-gray-900 mb-6"
-              style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
-            >
+          <section className="mt-14 border-t border-sand pt-10" aria-labelledby="faq-heading">
+            <h2 id="faq-heading" className="mb-6 font-display text-3xl font-light text-charcoal">
               Frequently Asked Questions
             </h2>
             <dl className="space-y-6">
               {post.faqs.map((faq) => (
                 <div key={faq.question}>
-                  <dt className="text-base font-semibold text-gray-900">{faq.question}</dt>
-                  <dd className="mt-2 text-sm leading-7 text-gray-600">{faq.answer}</dd>
+                  <dt className="text-base font-semibold text-charcoal">{faq.question}</dt>
+                  <dd className="mt-2 text-sm leading-7 text-slate">{faq.answer}</dd>
                 </div>
               ))}
             </dl>
           </section>
         )}
 
-        <aside className="mt-12 rounded-2xl bg-ink p-8 text-center">
-          <p className="text-base font-semibold text-white">Ready to find your perfect groom wear?</p>
-          <p className="mt-2 text-sm text-gray-400">
+        <aside className="mt-12 rounded-2xl bg-charcoal p-8 text-center">
+          <p className="font-display text-2xl font-light text-parchment">
+            Ready to find your perfect groom wear?
+          </p>
+          <p className="mt-2 text-sm text-parchment/70">
             Browse our collection or start a WhatsApp conversation with our team.
           </p>
           <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
             <Link
-              href="/collections/groom-wear"
-              className="inline-flex items-center justify-center rounded-xl bg-jewel px-5 py-2.5 text-sm font-semibold text-white hover:bg-jewel transition-colors"
+              href="/collections"
+              className="inline-flex items-center justify-center rounded-xl bg-terracotta px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-terracotta-light"
             >
-              Browse Groom Wear
+              Browse Collections
             </Link>
             <a
               href={`https://wa.me/${SITE.whatsappNumber}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-xl bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#1ebe5d] transition-colors"
+              className="inline-flex items-center justify-center rounded-xl bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#1ebe5d]"
             >
               WhatsApp Enquiry
             </a>

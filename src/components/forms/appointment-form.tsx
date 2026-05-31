@@ -45,10 +45,10 @@ export function AppointmentForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl bg-emerald-50 p-8 text-center">
-        <CheckCircle className="mx-auto h-10 w-10 text-emerald-500 mb-4" aria-hidden="true" />
-        <h3 className="font-semibold text-gray-900">Request submitted!</h3>
-        <p className="mt-2 text-sm text-gray-600">
+      <div className="rounded-2xl border border-sage/30 bg-sage-pale p-8 text-center">
+        <CheckCircle className="mx-auto mb-4 h-10 w-10 text-sage" aria-hidden="true" />
+        <h3 className="font-display text-xl font-normal text-charcoal">Request submitted</h3>
+        <p className="mt-2 text-sm text-slate">
           We&apos;ll confirm your appointment via WhatsApp within a few hours.
         </p>
       </div>
@@ -147,9 +147,9 @@ export function AppointmentForm() {
 
 const ic = (err: boolean) =>
   [
-    "w-full rounded-lg border px-3.5 py-2.5 text-sm text-gray-900 placeholder-gray-400",
-    "focus:outline-none focus:ring-2 focus:ring-royal focus:border-transparent transition-colors",
-    err ? "border-red-300 bg-red-50" : "border-gray-200 bg-white hover:border-gray-300",
+    "w-full rounded-lg border px-3.5 py-2.5 text-sm text-charcoal placeholder-mist",
+    "focus:outline-none focus:ring-2 focus:ring-terracotta/40 focus:border-terracotta transition-colors",
+    err ? "border-red-300 bg-red-50" : "border-sand bg-cream hover:border-mist",
   ].join(" ");
 
 function Field({
@@ -162,7 +162,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={id} className="mb-1.5 block text-sm font-medium text-gray-700">
+      <label htmlFor={id} className="mb-1.5 block text-sm font-medium text-charcoal-soft">
         {label}
       </label>
       {children}

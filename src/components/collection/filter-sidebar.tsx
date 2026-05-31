@@ -59,8 +59,8 @@ export function FilterSidebar({ fabrics, currentFilters }: FilterSidebarProps) {
   return (
     <aside className="space-y-6" aria-label="Product filters">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-gray-900 uppercase tracking-wider">
+      <div className="flex items-center justify-between border-b border-sand pb-4">
+        <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-charcoal">
           Filters
         </h2>
         {hasActiveFilters && (
@@ -68,7 +68,7 @@ export function FilterSidebar({ fabrics, currentFilters }: FilterSidebarProps) {
             variant="ghost"
             size="sm"
             onClick={clearAllFilters}
-            className="text-xs text-jewel hover:text-jewel"
+            className="text-xs text-terracotta hover:text-wine"
           >
             <X className="h-3 w-3" aria-hidden="true" />
             Clear all
@@ -143,7 +143,7 @@ function FilterGroup({
 }) {
   return (
     <div>
-      <h3 className="mb-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+      <h3 className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-mist">
         {title}
       </h3>
       {children}
@@ -167,8 +167,8 @@ function RadioOption({
       className={cn(
         "flex cursor-pointer items-center gap-2.5 rounded-md px-2 py-1.5 text-sm transition-colors",
         checked
-          ? "bg-jewel/8 text-jewel font-medium"
-          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+          ? "bg-terracotta-pale font-medium text-wine"
+          : "text-slate hover:bg-linen hover:text-charcoal"
       )}
     >
       <input
@@ -181,11 +181,11 @@ function RadioOption({
       <span
         className={cn(
           "flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
-          checked ? "border-jewel bg-jewel" : "border-gray-300"
+          checked ? "border-terracotta bg-terracotta" : "border-sand"
         )}
         aria-hidden="true"
       >
-        {checked && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
+        {checked && <span className="h-1.5 w-1.5 rounded-full bg-parchment" />}
       </span>
       {label}
     </label>

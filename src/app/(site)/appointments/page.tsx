@@ -3,7 +3,7 @@ import { buildMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { AppointmentForm } from "@/components/forms/appointment-form";
-import { Clock, MapPin, Scissors } from "lucide-react";
+import { Clock, MapPin, Scissors, Ruler, Shirt } from "lucide-react";
 
 export const metadata: Metadata = buildMetadata({
   title: "Book an Appointment",
@@ -22,14 +22,14 @@ const APPOINTMENT_TYPES = [
     duration: "45–60 minutes",
   },
   {
-    icon: Scissors,
+    icon: Ruler,
     title: "Measurement Session",
     description:
       "Our karigar takes your full measurements for a made-to-measure garment.",
     duration: "30–45 minutes",
   },
   {
-    icon: Scissors,
+    icon: Shirt,
     title: "Fitting Appointment",
     description:
       "Try on your garment after tailoring and approve the final fit.",
@@ -39,20 +39,20 @@ const APPOINTMENT_TYPES = [
 
 export default function AppointmentsPage() {
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen bg-parchment">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <Breadcrumb items={[{ name: "Book Appointment", href: "/appointments" }]} />
 
         <div className="mt-10 grid grid-cols-1 gap-16 lg:grid-cols-2">
           {/* Info side */}
           <div>
-            <h1
-              className="text-3xl font-bold text-gray-900 sm:text-4xl"
-              style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
-            >
+            <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-terracotta">
+              Visit our atelier
+            </p>
+            <h1 className="font-display text-4xl font-light text-charcoal sm:text-5xl">
               Book a Consultation
             </h1>
-            <p className="mt-4 text-gray-500 leading-7">
+            <p className="mt-4 max-w-md text-[15px] leading-7 text-mist">
               Visit us in Saddar and meet our master karigars. We&apos;ll discuss
               fabrics, cut, embroidery, and occasion — and take your measurements
               so we can create the perfect garment.
@@ -63,15 +63,15 @@ export default function AppointmentsPage() {
               {APPOINTMENT_TYPES.map(({ icon: Icon, title, description, duration }) => (
                 <div
                   key={title}
-                  className="flex gap-4 rounded-xl border border-gray-100 p-4"
+                  className="flex gap-4 rounded-xl border border-sand bg-cream p-4 transition-colors hover:border-terracotta/30"
                 >
-                  <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-jewel/8">
-                    <Icon className="h-4 w-4 text-jewel" aria-hidden="true" />
+                  <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-terracotta-pale">
+                    <Icon className="h-4 w-4 text-terracotta" aria-hidden="true" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-gray-900">{title}</p>
-                    <p className="text-xs text-gray-500 mt-0.5">{description}</p>
-                    <p className="text-xs text-jewel mt-1 font-medium">
+                    <p className="text-sm font-semibold text-charcoal">{title}</p>
+                    <p className="mt-0.5 text-xs leading-5 text-mist">{description}</p>
+                    <p className="mt-1 text-xs font-medium text-terracotta">
                       {duration}
                     </p>
                   </div>
@@ -80,21 +80,21 @@ export default function AppointmentsPage() {
             </div>
 
             {/* Visit info */}
-            <div className="mt-8 space-y-3 text-sm text-gray-600">
+            <div className="mt-8 space-y-3 text-sm text-slate">
               <div className="flex items-center gap-2.5">
-                <MapPin className="h-4 w-4 text-jewel shrink-0" aria-hidden="true" />
+                <MapPin className="h-4 w-4 shrink-0 text-terracotta" aria-hidden="true" />
                 <span>
                   {SITE.address.line1}, {SITE.address.area},{" "}
                   {SITE.address.city}
                 </span>
               </div>
               <div className="flex items-center gap-2.5">
-                <Clock className="h-4 w-4 text-jewel shrink-0" aria-hidden="true" />
+                <Clock className="h-4 w-4 shrink-0 text-terracotta" aria-hidden="true" />
                 <span>{SITE.openingHours}</span>
               </div>
             </div>
 
-            <p className="mt-6 text-sm text-gray-500">
+            <p className="mt-6 text-sm text-mist">
               Prefer to start on WhatsApp?{" "}
               <a
                 href={`https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent("Assalam o Alaikum! I'd like to book a consultation appointment.")}`}
@@ -108,8 +108,8 @@ export default function AppointmentsPage() {
           </div>
 
           {/* Form side */}
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">
+          <div className="rounded-2xl border border-sand bg-cream p-6 shadow-sm sm:p-8">
+            <h2 className="mb-6 font-display text-2xl font-normal text-charcoal">
               Request an Appointment
             </h2>
             <AppointmentForm />

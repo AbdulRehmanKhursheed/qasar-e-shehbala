@@ -59,23 +59,20 @@ const MEASUREMENTS = [
 
 export default function MeasurementGuidePage() {
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen bg-parchment">
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
         <Breadcrumb
           items={[{ name: "Measurement Guide", href: "/measurement-guide" }]}
         />
 
         <div className="mt-10">
-          <p className="text-sm font-medium uppercase tracking-wider text-jewel mb-3">
+          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-terracotta">
             Made-to-Measure
           </p>
-          <h1
-            className="text-3xl font-bold text-gray-900 sm:text-4xl"
-            style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
-          >
+          <h1 className="font-display text-4xl font-light text-charcoal sm:text-5xl">
             Sherwani Measurement Guide
           </h1>
-          <p className="mt-4 text-gray-500 leading-7">
+          <p className="mt-4 text-[15px] leading-7 text-mist">
             If you&apos;re outside Rawalpindi, you can take your own measurements
             at home and send them to us on WhatsApp. Follow this guide carefully
             for the best fit. When in doubt, always size up — our karigars will
@@ -84,11 +81,11 @@ export default function MeasurementGuidePage() {
         </div>
 
         {/* What you need */}
-        <div className="mt-10 rounded-2xl bg-jewel/8 p-6">
-          <h2 className="text-base font-semibold text-gray-900 mb-3">
+        <div className="mt-10 rounded-2xl border border-terracotta/15 bg-terracotta-pale p-6">
+          <h2 className="mb-3 font-display text-xl font-normal text-charcoal">
             What you need
           </h2>
-          <ul className="space-y-2 text-sm text-gray-700">
+          <ul className="space-y-2 text-sm text-charcoal-soft">
             <li>✓ A soft measuring tape (kapray ka mapa)</li>
             <li>✓ A helper — measurements are much more accurate with someone else measuring</li>
             <li>✓ Wear fitted clothes (not a thick jacket) when measuring</li>
@@ -97,37 +94,37 @@ export default function MeasurementGuidePage() {
         </div>
 
         {/* Measurement list */}
-        <div className="mt-10 space-y-6">
-          <h2 className="text-xl font-semibold text-gray-900">
+        <div className="mt-10 space-y-4">
+          <h2 className="font-display text-2xl font-normal text-charcoal">
             Required Measurements
           </h2>
 
           {MEASUREMENTS.map((m, i) => (
             <div
               key={m.name}
-              className="flex gap-4 rounded-xl border border-gray-100 p-5"
+              className="flex gap-4 rounded-xl border border-sand bg-cream p-5"
             >
-              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink text-xs font-bold text-white">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-charcoal text-xs font-bold text-parchment">
                 {i + 1}
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-semibold text-gray-900">{m.name}</h3>
-                  <span className="text-xs text-gray-400">({m.urdu})</span>
+                  <h3 className="text-sm font-semibold text-charcoal">{m.name}</h3>
+                  <span className="text-xs text-mist">({m.urdu})</span>
                 </div>
-                <p className="mt-1 text-sm text-gray-600 leading-6">{m.instruction}</p>
+                <p className="mt-1 text-sm leading-6 text-slate">{m.instruction}</p>
               </div>
             </div>
           ))}
         </div>
 
         {/* Measurement table template */}
-        <div className="mt-10 rounded-2xl border border-gray-200 overflow-hidden">
-          <div className="bg-ink px-5 py-3">
-            <h2 className="text-sm font-semibold text-white">Measurement Template</h2>
-            <p className="text-xs text-gray-400">Copy this and fill it in before sending to us on WhatsApp</p>
+        <div className="mt-10 overflow-hidden rounded-2xl border border-sand">
+          <div className="bg-charcoal px-5 py-3">
+            <h2 className="text-sm font-semibold text-parchment">Measurement Template</h2>
+            <p className="text-xs text-parchment/60">Copy this and fill it in before sending to us on WhatsApp</p>
           </div>
-          <div className="p-5 font-mono text-xs text-gray-700 bg-gray-50 leading-7 whitespace-pre">
+          <div className="whitespace-pre bg-linen p-5 font-mono text-xs leading-7 text-slate">
             {`Chest (Seena):     ______ inches
 Waist (Kamar):     ______ inches
 Shoulder (Kandha): ______ inches
@@ -140,7 +137,7 @@ Hip (Koolay):      ______ inches`}
 
         {/* CTA */}
         <div className="mt-10 text-center">
-          <p className="text-sm text-gray-500 mb-4">
+          <p className="mb-4 text-sm text-mist">
             Have your measurements ready? Send them on WhatsApp to start your order.
           </p>
           <a

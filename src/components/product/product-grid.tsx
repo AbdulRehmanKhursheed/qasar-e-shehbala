@@ -14,9 +14,9 @@ export function ProductGrid({
 }: ProductGridProps) {
   if (products.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-center">
-        <p className="text-lg text-gray-500">{emptyMessage}</p>
-        <p className="mt-2 text-sm text-gray-400">
+      <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-sand bg-linen/40 py-20 text-center">
+        <p className="font-display text-xl font-light text-charcoal">{emptyMessage}</p>
+        <p className="mt-2 text-sm text-mist">
           Try adjusting your filters or browse all collections.
         </p>
       </div>
