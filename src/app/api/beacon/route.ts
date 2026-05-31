@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { recordEvent } from "@/server/analytics/mutations";
 
 const beaconSchema = z.object({
   eventType: z.string().max(64),
@@ -19,11 +20,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       return new NextResponse(null, { status: 400 });
     }
 
-    // TODO: persist to AnalyticsEvent via Prisma
-    if (process.env.NODE_ENV === "development") {
-      console.log("[beacon]", result.data);
-    }
-
+    await recordEvent(result.data);
     return new NextResponse(null, { status: 204 });
   } catch {
     return new NextResponse(null, { status: 204 });

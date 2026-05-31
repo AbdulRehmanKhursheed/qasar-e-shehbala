@@ -54,6 +54,13 @@ export function buildWhatsAppUrl(params: WhatsAppMessageParams): string {
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 }
 
+export function normalizePhone(raw: string): string {
+  const digits = raw.replace(/\D/g, "");
+  if (digits.startsWith("92")) return digits;
+  if (digits.startsWith("0")) return `92${digits.slice(1)}`;
+  return digits;
+}
+
 export function slugify(text: string): string {
   return text
     .toLowerCase()

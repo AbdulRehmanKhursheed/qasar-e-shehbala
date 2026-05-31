@@ -2,9 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
-import { WhatsAppFAB } from "@/components/ui/whatsapp-fab";
 import { JsonLd } from "@/components/seo/json-ld";
 import { localBusinessJsonLd } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
@@ -41,36 +38,21 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: SITE.name, url: SITE.url }],
   creator: SITE.name,
-  openGraph: {
-    type: "website",
-    locale: "en_PK",
-    url: SITE.url,
-    siteName: SITE.name,
-  },
+  openGraph: { type: "website", locale: "en_PK", url: SITE.url, siteName: SITE.name },
   twitter: { card: "summary_large_image" },
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
-  verification: {
-    // google: "your-verification-token",
-  },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${geist.variable} h-full`} suppressHydrationWarning>
-      <body className="flex min-h-full flex-col">
+      <body className="min-h-full">
         <JsonLd data={localBusinessJsonLd()} />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppFAB />
+        {children}
       </body>
     </html>
   );

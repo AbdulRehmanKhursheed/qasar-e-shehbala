@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 export interface Column<T> {
@@ -14,13 +15,6 @@ export interface DataTableProps<T> {
   loading?: boolean;
   emptyMessage?: string;
   caption?: string;
-}
-
-export interface PaginationProps {
-  page: number;
-  total: number;
-  pageSize: number;
-  onPageChange: (page: number) => void;
 }
 
 export function DataTable<T>({
@@ -65,24 +59,15 @@ export function DataTable<T>({
               ))
             ) : data.length === 0 ? (
               <tr>
-                <td
-                  colSpan={columns.length}
-                  className="px-4 py-12 text-center text-gray-400"
-                >
+                <td colSpan={columns.length} className="px-4 py-12 text-center text-gray-400">
                   {emptyMessage}
                 </td>
               </tr>
             ) : (
               data.map((row) => (
-                <tr
-                  key={String(row[keyField])}
-                  className="hover:bg-gray-50 transition-colors"
-                >
+                <tr key={String(row[keyField])} className="hover:bg-gray-50 transition-colors">
                   {columns.map((col) => (
-                    <td
-                      key={col.key}
-                      className={cn("px-4 py-3 text-gray-700", col.className)}
-                    >
+                    <td key={col.key} className={cn("px-4 py-3 text-gray-700", col.className)}>
                       {col.cell(row)}
                     </td>
                   ))}
@@ -96,76 +81,72 @@ export function DataTable<T>({
   );
 }
 
-export function Pagination({ page, total, pageSize, onPageChange }: PaginationProps) {
+export interface PaginationProps {
+  page: number;
+  total: number;
+  pageSize: number;
+  buildHref: (page: number) => string;
+}
+
+export function Pagination({ page, total, pageSize, buildHref }: PaginationProps) {
   const totalPages = Math.ceil(total / pageSize);
   if (totalPages <= 1) return null;
 
   const start = (page - 1) * pageSize + 1;
   const end = Math.min(page * pageSize, total);
+  const pages = Array.from({ length: Math.min(totalPages, 5) }, (_, i) => i + 1);
 
   return (
-    <div className="flex items-center justify-between border-t border-gray-100 bg-white px-4 py-3">
+    <div className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3">
       <p className="text-xs text-gray-500">
         Showing {start}–{end} of {total}
       </p>
       <div className="flex items-center gap-1">
-        <PaginationButton
-          onClick={() => onPageChange(page - 1)}
-          disabled={page === 1}
-          aria-label="Previous page"
-        >
+        <PageLink href={buildHref(page - 1)} disabled={page === 1} label="Previous page">
           ←
-        </PaginationButton>
-
-        {/* Show at most 5 page numbers */}
-        {Array.from({ length: Math.min(totalPages, 5) }).map((_, i) => {
-          const p = i + 1;
-          return (
-            <PaginationButton
-              key={p}
-              onClick={() => onPageChange(p)}
-              active={p === page}
-              aria-label={`Page ${p}`}
-              aria-current={p === page ? "page" : undefined}
-            >
-              {p}
-            </PaginationButton>
-          );
-        })}
-
-        <PaginationButton
-          onClick={() => onPageChange(page + 1)}
-          disabled={page === totalPages}
-          aria-label="Next page"
-        >
+        </PageLink>
+        {pages.map((p) => (
+          <PageLink key={p} href={buildHref(p)} active={p === page} label={`Page ${p}`}>
+            {p}
+          </PageLink>
+        ))}
+        <PageLink href={buildHref(page + 1)} disabled={page === totalPages} label="Next page">
           →
-        </PaginationButton>
+        </PageLink>
       </div>
     </div>
   );
 }
 
-function PaginationButton({
+function PageLink({
+  href,
   children,
-  onClick,
   disabled,
   active,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement> & { active?: boolean }) {
+  label,
+}: {
+  href: string;
+  children: React.ReactNode;
+  disabled?: boolean;
+  active?: boolean;
+  label: string;
+}) {
+  const className = cn(
+    "flex h-8 min-w-[2rem] items-center justify-center rounded px-2 text-sm font-medium transition-colors",
+    active ? "bg-[#c9a227] text-white" : "text-gray-600 hover:bg-gray-100"
+  );
+
+  if (disabled) {
+    return (
+      <span className={cn(className, "pointer-events-none opacity-40")} aria-hidden="true">
+        {children}
+      </span>
+    );
+  }
+
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      className={cn(
-        "flex h-8 min-w-[2rem] items-center justify-center rounded px-2 text-sm font-medium transition-colors",
-        active
-          ? "bg-[#c9a227] text-white"
-          : "text-gray-600 hover:bg-gray-100 disabled:opacity-40 disabled:pointer-events-none"
-      )}
-      {...props}
-    >
+    <Link href={href} className={className} aria-label={label} aria-current={active ? "page" : undefined}>
       {children}
-    </button>
+    </Link>
   );
 }

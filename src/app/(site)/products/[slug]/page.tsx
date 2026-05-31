@@ -8,18 +8,13 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Badge } from "@/components/ui/badge";
 import { WhatsAppCTA } from "@/components/product/whatsapp-cta";
-import type { Product } from "@/types";
+import { getProductBySlug } from "@/server/catalog/queries";
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
 }
 
-// TODO: replace with actual Prisma query
-async function getProduct(_slug: string): Promise<Product | null> {
-  // In Phase 1, connect to Supabase via Prisma here.
-  // Returning null triggers notFound() for unknown slugs.
-  return null;
-}
+const getProduct = getProductBySlug;
 
 export async function generateMetadata({
   params,

@@ -1,20 +1,7 @@
 import Link from "next/link";
 import { formatPKR } from "@/lib/utils";
 import { CheckCircle } from "lucide-react";
-
-interface PendingPayment {
-  id: string;
-  orderId: string;
-  orderRef: string;
-  amountMinor: string;
-  method: string;
-  senderName?: string;
-}
-
-// TODO: Replace with Prisma query — pending (unverified) payments
-async function getPendingPayments(): Promise<PendingPayment[]> {
-  return [];
-}
+import { getPendingPayments } from "@/server/orders/queries";
 
 export async function PendingPayments() {
   const payments = await getPendingPayments();

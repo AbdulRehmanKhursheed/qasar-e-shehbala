@@ -2,28 +2,17 @@
 // In Phase 1 returns zeros; wire up Prisma queries in each function.
 
 import { ShoppingBag, Scissors, Clock, TrendingUp } from "lucide-react";
+import { getDashboardStats } from "@/server/orders/queries";
 
 interface Stat {
   label: string;
   value: string;
   subLabel?: string;
   icon: React.ReactNode;
-  trend?: "up" | "down" | "neutral";
-}
-
-// TODO: Replace with Prisma queries
-async function getStats() {
-  return {
-    newLeadsToday: 0,
-    openOrders: 0,
-    pendingVerifications: 0,
-    activeJobs: 0,
-    revenueThisMonth: 0n,
-  };
 }
 
 export async function DashboardStats() {
-  const stats = await getStats();
+  const stats = await getDashboardStats();
 
   const STATS: Stat[] = [
     {

@@ -17,9 +17,13 @@ const PAGE_TITLES: Record<string, string> = {
   "/admin/blog": "Blog & CMS",
 };
 
-export function AdminHeader() {
+interface AdminHeaderProps {
+  staffName: string;
+  role: string;
+}
+
+export function AdminHeader({ staffName, role }: AdminHeaderProps) {
   const pathname = usePathname();
-  // Match the most specific prefix
   const title =
     Object.entries(PAGE_TITLES)
       .filter(([key]) => pathname.startsWith(key))
@@ -30,7 +34,6 @@ export function AdminHeader() {
       <h1 className="text-base font-semibold text-gray-900">{title}</h1>
 
       <div className="flex items-center gap-3">
-        {/* Notification bell — Phase 2 connects to unread lead/order counts */}
         <button
           type="button"
           className="relative rounded-full p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
@@ -39,9 +42,14 @@ export function AdminHeader() {
           <Bell className="h-5 w-5" aria-hidden="true" />
         </button>
 
-        {/* Avatar placeholder */}
-        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-100 text-sm font-semibold text-[#c9a227]">
-          A
+        <div className="flex items-center gap-2.5">
+          <div className="hidden text-right sm:block">
+            <p className="text-xs font-medium text-gray-900">{staffName}</p>
+            <p className="text-[10px] uppercase tracking-wide text-gray-400">{role}</p>
+          </div>
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-amber-100 text-sm font-semibold text-[#c9a227]">
+            {staffName.charAt(0).toUpperCase()}
+          </div>
         </div>
       </div>
     </header>

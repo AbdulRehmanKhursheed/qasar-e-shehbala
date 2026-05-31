@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import { createAppointment } from "@/server/appointments/mutations";
 
 const appointmentSchema = z.object({
   name: z.string().min(2).max(128),
@@ -12,20 +13,16 @@ const appointmentSchema = z.object({
 });
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
+  const result = appointmentSchema.safeParse(await request.json().catch(() => null));
+  if (!result.success) {
+    return NextResponse.json({ success: false, error: "Validation failed" }, { status: 422 });
+  }
+
   try {
-    const result = appointmentSchema.safeParse(await request.json());
-    if (!result.success) {
-      return NextResponse.json({ success: false, error: "Validation failed" }, { status: 422 });
-    }
-
-    // TODO: persist to Appointment via Prisma + notify shop via WhatsApp
-    if (process.env.NODE_ENV === "development") {
-      console.log("[appointment]", result.data);
-    }
-
+    await createAppointment(result.data);
     return NextResponse.json({ success: true }, { status: 201 });
   } catch (error) {
     console.error("[appointments]", error);
-    return NextResponse.json({ success: false, error: "Internal server error" }, { status: 500 });
+    return NextResponse.json({ success: false, error: "Could not book the appointment" }, { status: 503 });
   }
 }

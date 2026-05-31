@@ -2,21 +2,7 @@ import Link from "next/link";
 import { DataTable, type Column } from "./data-table";
 import { OrderStatusBadge, PaymentStatusBadge } from "./status-badge";
 import { formatPKR, formatDate } from "@/lib/utils";
-
-interface OrderRow {
-  id: string;
-  orderRef: string;
-  customerName: string;
-  totalMinor: string;
-  orderStatus: string;
-  paymentStatus: string;
-  createdAt: string;
-}
-
-// TODO: Replace with Prisma query — orders, newest first, limit 10
-async function getRecentOrders(): Promise<OrderRow[]> {
-  return [];
-}
+import { getRecentOrders, type OrderRow } from "@/server/orders/queries";
 
 const COLUMNS: Column<OrderRow>[] = [
   {

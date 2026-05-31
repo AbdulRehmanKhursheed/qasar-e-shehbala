@@ -17,6 +17,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { logoutAction } from "@/server/auth/actions";
 
 const NAV = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
@@ -78,16 +79,15 @@ export function AdminSidebar() {
 
       {/* Sign out */}
       <div className="border-t border-gray-200 p-3">
-        <button
-          type="button"
-          className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
-          onClick={() => {
-            // TODO: call signOut from Auth.js
-          }}
-        >
-          <LogOut className="h-4 w-4 shrink-0" aria-hidden="true" />
-          Sign Out
-        </button>
+        <form action={logoutAction}>
+          <button
+            type="submit"
+            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+          >
+            <LogOut className="h-4 w-4 shrink-0" aria-hidden="true" />
+            Sign Out
+          </button>
+        </form>
       </div>
     </aside>
   );

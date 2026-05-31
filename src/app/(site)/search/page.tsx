@@ -3,16 +3,10 @@ import { buildMetadata } from "@/lib/seo";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { ProductGrid } from "@/components/product/product-grid";
 import { Search } from "lucide-react";
-import type { Product } from "@/types";
+import { searchProducts } from "@/server/catalog/queries";
 
 interface SearchPageProps {
   searchParams: Promise<{ q?: string }>;
-}
-
-// TODO: Replace with Prisma full-text search
-async function searchProducts(query: string): Promise<Product[]> {
-  if (!query || query.length < 2) return [];
-  return [];
 }
 
 export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {

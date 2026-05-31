@@ -1,22 +1,9 @@
 import Link from "next/link";
 import { TailoringStageBadge } from "./status-badge";
-
-interface TailoringJobRow {
-  id: string;
-  orderRef: string;
-  productName: string;
-  stage: string;
-  promisedReadyDate?: string;
-  isOverdue?: boolean;
-}
-
-// TODO: Replace with Prisma query — open tailoring jobs, oldest promised-date first
-async function getActiveJobs(): Promise<TailoringJobRow[]> {
-  return [];
-}
+import { getActiveTailoringJobs } from "@/server/orders/queries";
 
 export async function ActiveTailoringJobs() {
-  const jobs = await getActiveJobs();
+  const jobs = await getActiveTailoringJobs();
 
   return (
     <div className="rounded-xl border border-gray-200 bg-white p-5">
