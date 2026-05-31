@@ -12,6 +12,7 @@ const LINKS = {
   ],
   Information: [
     { label: "About Us", href: "/about" },
+    { label: "Lookbook", href: "/lookbook" },
     { label: "Blog & Guides", href: "/blog" },
     { label: "Size & Measurement Guide", href: "/measurement-guide" },
     { label: "Book Appointment", href: "/appointments" },
