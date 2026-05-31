@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { Phone, Ruler } from "lucide-react";
 import { buildMetadata, productJsonLd } from "@/lib/seo";
 import { formatPKR } from "@/lib/utils";
 import { SITE } from "@/lib/constants";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { Badge } from "@/components/ui/badge";
+import { GeometricMotif } from "@/components/ui/geometric-motif";
 import { WhatsAppCTA } from "@/components/product/whatsapp-cta";
 import { getProductBySlug } from "@/server/catalog/queries";
 
@@ -14,13 +16,9 @@ interface ProductPageProps {
   params: Promise<{ slug: string }>;
 }
 
-const getProduct = getProductBySlug;
-
-export async function generateMetadata({
-  params,
-}: ProductPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = await getProduct(slug);
+  const product = await getProductBySlug(slug);
   if (!product) return {};
 
   const firstImage = product.images[0];
@@ -31,43 +29,34 @@ export async function generateMetadata({
       product.description ??
       `Premium made-to-measure ${product.name} by ${SITE.name}. Tailored in Saddar, Rawalpindi.`,
     slug: `products/${slug}`,
-    ogImage: firstImage?.r2Key
-      ? `${process.env.NEXT_PUBLIC_CF_IMAGES_URL}/${firstImage.r2Key}/w=1200,q=80,format=auto`
-      : undefined,
+    ogImage: firstImage?.r2Key?.startsWith("http") ? firstImage.r2Key : undefined,
   });
 }
 
-// On-demand ISR — revalidate when product is updated via admin webhook
-export const revalidate = false; // static until revalidated
+export const revalidate = 3600;
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
-  const product = await getProduct(slug);
-
+  const product = await getProductBySlug(slug);
   if (!product) notFound();
 
   const priceRupees = Number(product.basePriceMinor) / 100;
-  const isMTO =
-    product.productType === "MADE_TO_ORDER" ||
-    product.productType === "BOTH";
+  const isMTO = product.productType === "MADE_TO_ORDER" || product.productType === "BOTH";
   const primaryImage = product.images[0];
   const categoryName = product.category?.name;
 
   const structuredData = productJsonLd({
     name: product.name,
     description: product.description ?? undefined,
-    images: product.images.map(
-      (img) =>
-        `${process.env.NEXT_PUBLIC_CF_IMAGES_URL}/${img.r2Key}/w=800,q=80,format=auto`
-    ),
+    images: product.images.map((img) => img.r2Key),
     priceRupees,
     sku: product.variants[0]?.sku,
     slug,
-    inStock: true, // MTO is always available; STOCK would check StockLevel
+    inStock: true,
   });
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen bg-parchment">
       <JsonLd data={structuredData} />
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -75,22 +64,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
           items={[
             { name: "Collections", href: "/collections" },
             ...(categoryName
-              ? [
-                  {
-                    name: categoryName,
-                    href: `/collections/${product.category?.slug ?? ""}`,
-                  },
-                ]
+              ? [{ name: categoryName, href: `/collections/${product.category?.slug ?? ""}` }]
               : []),
             { name: product.name, href: `/products/${slug}` },
           ]}
         />
 
-        <div className="mt-8 grid grid-cols-1 gap-x-12 gap-y-10 lg:grid-cols-2">
-          {/* ── Image gallery ──────────────────────────────────────── */}
-          <div className="space-y-4">
-            {/* Primary */}
-            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-gray-100">
+        <div className="mt-8 grid grid-cols-1 gap-x-14 gap-y-10 lg:grid-cols-2">
+          {/* Gallery */}
+          <div className="space-y-3 lg:sticky lg:top-28 lg:self-start">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-linen ring-1 ring-sand">
               {primaryImage ? (
                 <Image
                   src={primaryImage.r2Key}
@@ -101,85 +84,65 @@ export default async function ProductPage({ params }: ProductPageProps) {
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               ) : (
-                <div className="flex h-full items-center justify-center text-gray-300">
-                  <span className="text-sm">No image available</span>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <GeometricMotif className="h-40 w-40 text-sand" />
                 </div>
               )}
             </div>
 
-            {/* Thumbnails */}
             {product.images.length > 1 && (
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-4 gap-3">
                 {product.images.slice(0, 4).map((img) => (
-                  <div
-                    key={img.id}
-                    className="relative aspect-square overflow-hidden rounded-lg bg-gray-100"
-                  >
-                    <Image
-                      src={img.r2Key}
-                      alt={img.alt}
-                      fill
-                      className="object-cover"
-                      sizes="10vw"
-                    />
+                  <div key={img.id} className="relative aspect-square overflow-hidden rounded-xl bg-linen ring-1 ring-sand/60">
+                    <Image src={img.r2Key} alt={img.alt} fill className="object-cover" sizes="15vw" />
                   </div>
                 ))}
               </div>
             )}
           </div>
 
-          {/* ── Product info ───────────────────────────────────────── */}
+          {/* Info */}
           <div className="flex flex-col">
             {categoryName && (
-              <p className="text-xs font-medium uppercase tracking-wider text-jewel">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-terracotta">
                 {categoryName}
               </p>
             )}
-            <h1
-              className="mt-2 text-3xl font-bold text-gray-900 sm:text-4xl"
-              style={{ fontFamily: "var(--font-fraunces), Georgia, serif" }}
-            >
+            <h1 className="mt-3 font-display text-4xl leading-tight text-charcoal sm:text-5xl">
               {product.name}
             </h1>
 
-            <div className="mt-4 flex flex-wrap items-center gap-3">
+            <div className="mt-5 flex flex-wrap items-center gap-4">
               {priceRupees > 0 && (
-                <p className="text-2xl font-semibold text-gray-900">
+                <p className="font-display text-3xl text-charcoal">
                   {formatPKR(Number(product.basePriceMinor))}
                 </p>
               )}
-              {isMTO && (
-                <Badge variant="terracotta">Made to Measure</Badge>
-              )}
+              {isMTO && <Badge variant="terracotta">Made to Measure</Badge>}
             </div>
 
-            {/* Lead time */}
-            <p className="mt-3 text-sm text-gray-500">
+            <p className="mt-3 text-sm text-mist">
               {isMTO
-                ? `Ready in ${SITE.defaultLeadTimeDays} working days · 30–50% advance deposit required`
+                ? `Ready in ${SITE.defaultLeadTimeDays} working days · 30–50% advance secures your fabric`
                 : "Ready to wear · COD available up to PKR 10,000"}
             </p>
 
-            {/* Description */}
             {product.description && (
-              <div className="mt-6 border-t border-gray-100 pt-6">
-                <p className="text-sm leading-7 text-gray-600">
-                  {product.description}
-                </p>
+              <div className="mt-7 border-t border-sand pt-7">
+                <p className="text-[15px] leading-8 text-slate">{product.description}</p>
               </div>
             )}
 
-            {/* Fabric options */}
             {product.fabricOptions.length > 0 && (
-              <div className="mt-6 border-t border-gray-100 pt-6">
-                <h3 className="text-sm font-medium text-gray-900 mb-3">
+              <div className="mt-7 border-t border-sand pt-7">
+                <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-mist">
                   Available Fabrics
-                </h3>
+                </h2>
                 <div className="flex flex-wrap gap-2">
                   {product.fabricOptions.map(({ fabric }) => (
                     <span
                       key={fabric.id}
-                      className="rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-600"
+                      className="rounded-full border border-sand bg-cream px-3.5 py-1.5 text-xs text-slate"
                     >
                       {fabric.name}
                       {fabric.color ? ` · ${fabric.color}` : ""}
@@ -189,7 +152,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
             )}
 
-            {/* WhatsApp CTA — the primary conversion action */}
+            {/* CTAs */}
             <div className="mt-8 space-y-3">
               <WhatsAppCTA
                 productName={product.name}
@@ -198,34 +161,40 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 productId={product.id}
                 variantId={product.variants[0]?.id}
               />
-
               <a
                 href={`tel:${SITE.phone}`}
-                className="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 px-6 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                className="flex w-full items-center justify-center gap-2 rounded-full border border-sand bg-cream px-6 py-3.5 text-sm font-medium text-slate transition-colors hover:border-terracotta hover:text-terracotta"
               >
-                Call Us: {SITE.phone}
+                <Phone className="h-4 w-4" aria-hidden="true" />
+                Call us: {SITE.phone}
               </a>
             </div>
 
-            {/* Policy reassurance */}
-            <div className="mt-6 rounded-xl bg-jewel/8 p-4 text-sm text-gray-700 space-y-1.5">
-              <p className="font-medium text-gray-900">How it works</p>
-              <p>✓ Enquire on WhatsApp — we&apos;ll confirm measurements & fabric</p>
-              <p>✓ Pay 30–50% advance deposit to begin tailoring</p>
-              <p>✓ Balance collected at final fitting or delivery</p>
-              <p>✓ Free alteration within 7 days of collection</p>
+            {/* How it works */}
+            <div className="mt-7 rounded-2xl border border-sand bg-cream p-5">
+              <p className="font-display text-lg text-charcoal">How your order works</p>
+              <ul className="mt-3 space-y-2 text-[13px] text-slate">
+                {[
+                  "Enquire on WhatsApp — we confirm measurements & fabric",
+                  "Pay a 30–50% advance to begin tailoring",
+                  "Balance collected at the final fitting or on delivery",
+                  "Free alteration within 7 days of collection",
+                ].map((line) => (
+                  <li key={line} className="flex gap-2.5">
+                    <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-terracotta" aria-hidden="true" />
+                    {line}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* Measurement guide link */}
-            <p className="mt-4 text-xs text-gray-500">
-              Not sure about your measurements?{" "}
-              <a
-                href="/measurement-guide"
-                className="font-medium text-jewel hover:underline"
-              >
-                See our measurement guide →
-              </a>
-            </p>
+            <a
+              href="/measurement-guide"
+              className="mt-5 inline-flex items-center gap-2 text-[13px] font-medium text-terracotta hover:underline"
+            >
+              <Ruler className="h-4 w-4" aria-hidden="true" />
+              Not sure of your size? See the measurement guide
+            </a>
           </div>
         </div>
       </div>
