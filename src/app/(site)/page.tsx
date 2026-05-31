@@ -113,7 +113,7 @@ export default function HomePage() {
                 </div>
                 {/* Center text */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                  <p className="font-display text-3xl text-mist" style={{ fontStyle: "italic" }}>Qasr-e-Shehbala</p>
+                  <p className="font-display text-3xl text-mist" style={{ fontStyle: "italic" }}>Qasar-e-Shehbala</p>
                   <p className="text-xs uppercase tracking-[0.35em] text-fog">Garment photography</p>
                 </div>
               </div>
@@ -302,7 +302,7 @@ export default function HomePage() {
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <a
-              href={`https://maps.google.com/?q=${encodeURIComponent("Qasr-e-Shehbala, Saddar, Rawalpindi")}`}
+              href={`https://maps.google.com/?q=${encodeURIComponent("Qasar-e-Shehbala, Saddar, Rawalpindi")}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-sand px-6 py-3 text-[13px] font-medium text-slate transition-colors hover:border-terracotta hover:text-terracotta"

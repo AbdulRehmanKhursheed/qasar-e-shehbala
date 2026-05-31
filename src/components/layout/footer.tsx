@@ -34,7 +34,7 @@ export function Footer() {
 
           {/* Brand */}
           <div className="lg:col-span-1">
-            <p className="font-display text-2xl font-semibold text-parchment">Qasr-e-Shehbala</p>
+            <p className="font-display text-2xl font-semibold text-parchment">Qasar-e-Shehbala</p>
             <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-terracotta">
               Est. {SITE.established}
             </p>
@@ -80,7 +80,7 @@ export function Footer() {
             <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-parchment/40">Visit Us</p>
             <ul className="space-y-3">
               {[
-                { icon: MapPin, content: `${SITE.address.line1}, ${SITE.address.area}, ${SITE.address.city}`, href: `https://maps.google.com/?q=${encodeURIComponent("Qasr-e-Shehbala, Saddar, Rawalpindi")}` },
+                { icon: MapPin, content: `${SITE.address.line1}, ${SITE.address.area}, ${SITE.address.city}`, href: `https://maps.google.com/?q=${encodeURIComponent("Qasar-e-Shehbala, Saddar, Rawalpindi")}` },
                 { icon: Phone, content: SITE.phone, href: `tel:${SITE.phone}` },
                 { icon: Mail, content: SITE.email, href: `mailto:${SITE.email}` },
                 { icon: Clock, content: SITE.openingHours, href: null },

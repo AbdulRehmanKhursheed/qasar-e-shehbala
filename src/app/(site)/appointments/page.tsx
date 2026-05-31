@@ -7,7 +7,7 @@ import { Clock, MapPin, Scissors } from "lucide-react";
 
 export const metadata: Metadata = buildMetadata({
   title: "Book an Appointment",
-  description: `Book a fitting consultation or measurement session at Qasr-e-Shehbala in Saddar, Rawalpindi. Meet our master karigars and discuss your groom wear.`,
+  description: `Book a fitting consultation or measurement session at Qasar-e-Shehbala in Saddar, Rawalpindi. Meet our master karigars and discuss your groom wear.`,
   slug: "appointments",
 });
 

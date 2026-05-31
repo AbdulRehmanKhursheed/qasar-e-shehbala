@@ -4,7 +4,7 @@ import { AdminHeader } from "@/components/admin/admin-header";
 import { requireStaff } from "@/server/auth/current-user";
 
 export const metadata: Metadata = {
-  title: { default: "Admin — Qasr-e-Shehbala", template: "%s | Admin" },
+  title: { default: "Admin — Qasar-e-Shehbala", template: "%s | Admin" },
   robots: { index: false, follow: false },
 };
 

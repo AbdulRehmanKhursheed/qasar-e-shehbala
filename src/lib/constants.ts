@@ -1,5 +1,5 @@
 export const SITE = {
-  name: "Qasr-e-Shehbala",
+  name: "Qasar-e-Shehbala",
   tagline: "Premium Groom Wear Since 1999",
   description:
     "Rawalpindi's finest made-to-measure groom wear — sherwani, prince coats, waistcoats, and premium eastern menswear. Tailored by master karigars in Saddar since 1999.",
@@ -10,7 +10,7 @@ export const SITE = {
   ogImage: "/logos/q-s-logo.jpeg",
   phone: process.env.NEXT_PUBLIC_PHONE ?? "+92 300 0000000",
   whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "923000000000",
-  email: process.env.NEXT_PUBLIC_EMAIL ?? "info@qasrshehbala.pk",
+  email: process.env.NEXT_PUBLIC_EMAIL ?? "info@qasarshehbala.pk",
   address: {
     line1: "Main Saddar Road",
     area: "Saddar",
@@ -20,9 +20,9 @@ export const SITE = {
     postalCode: "46000",
   },
   social: {
-    instagram: "https://instagram.com/qasrshehbala",
-    facebook: "https://facebook.com/qasrshehbala",
-    youtube: "https://youtube.com/@qasrshehbala",
+    instagram: "https://instagram.com/qasarshehbala",
+    facebook: "https://facebook.com/qasarshehbala",
+    youtube: "https://youtube.com/@qasarshehbala",
   },
   openingHours: "Mon–Sat 10:00–21:00 PKT",
   established: 1999,

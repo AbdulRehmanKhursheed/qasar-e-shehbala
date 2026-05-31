@@ -6,7 +6,7 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 export const metadata: Metadata = buildMetadata({
   title: "Sherwani Measurement Guide",
   description:
-    "How to take your sherwani measurements at home for a perfect made-to-measure fit. Step-by-step guide by the karigars at Qasr-e-Shehbala, Rawalpindi.",
+    "How to take your sherwani measurements at home for a perfect made-to-measure fit. Step-by-step guide by the karigars at Qasar-e-Shehbala, Rawalpindi.",
   slug: "measurement-guide",
 });
 

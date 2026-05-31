@@ -10,7 +10,7 @@ Guidance for anyone — human or otherwise — working in this repository.
 
 ## Project
 
-Ecommerce and tailoring platform for Qasr-e-Shehbala, a premium Pakistani menswear house. See `README.md` for setup and `docs/ARCHITECTURE.md` for the system design and the reasoning behind it. Read the architecture document before making structural changes.
+Ecommerce and tailoring platform for Qasar-e-Shehbala, a premium Pakistani menswear house. See `README.md` for setup and `docs/ARCHITECTURE.md` for the system design and the reasoning behind it. Read the architecture document before making structural changes.
 
 ## Stack
 

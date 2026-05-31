@@ -44,7 +44,7 @@ export function AdminSidebar() {
       <div className="flex h-16 items-center border-b border-gray-200 px-5">
         <div>
           <p className="text-sm font-bold text-gray-900" style={{ fontFamily: "Georgia, serif" }}>
-            Qasr-e-Shehbala
+            Qasar-e-Shehbala
           </p>
           <p className="text-[10px] text-[#c9a227] uppercase tracking-wider">Admin Portal</p>
         </div>

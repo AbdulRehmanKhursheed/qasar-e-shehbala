@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 export const metadata: Metadata = buildMetadata({
   title: "Blog — Groom Wear Guides & Lookbooks",
   description:
-    "Sherwani vs prince coat, how to take measurements, fabric guides, wedding styling tips and real-wedding lookbooks from Qasr-e-Shehbala.",
+    "Sherwani vs prince coat, how to take measurements, fabric guides, wedding styling tips and real-wedding lookbooks from Qasar-e-Shehbala.",
   slug: "blog",
 });
 

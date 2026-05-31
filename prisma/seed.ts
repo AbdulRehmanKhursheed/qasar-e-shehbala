@@ -20,11 +20,11 @@ async function main() {
 
   const ownerPassword = await hash("changeme123", 10);
   await prisma.staff.upsert({
-    where: { email: "owner@qasrshehbala.pk" },
+    where: { email: "owner@qasarshehbala.pk" },
     update: {},
     create: {
       name: "Shop Owner",
-      email: "owner@qasrshehbala.pk",
+      email: "owner@qasarshehbala.pk",
       passwordHash: ownerPassword,
       role: "OWNER",
       branchId: branch.id,

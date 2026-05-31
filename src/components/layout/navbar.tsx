@@ -52,7 +52,7 @@ export function Navbar() {
             />
             <div className="flex flex-col leading-none">
               <span className="font-display text-[1.25rem] font-semibold tracking-tight text-charcoal" style={{ fontStyle: "normal" }}>
-                Qasr-e-Shehbala
+                Qasar-e-Shehbala
               </span>
               <span className="text-[9px] font-medium uppercase tracking-[0.3em] text-terracotta mt-0.5">
                 Est. {SITE.established}

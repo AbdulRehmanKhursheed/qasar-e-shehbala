@@ -40,7 +40,7 @@ export interface WhatsAppMessageParams {
 export function buildWhatsAppUrl(params: WhatsAppMessageParams): string {
   const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "";
   const message = [
-    "Assalam o Alaikum Qasr-e-Shehbala!",
+    "Assalam o Alaikum Qasar-e-Shehbala!",
     `Order ref: ${params.ref}`,
     params.productName ? `Product: ${params.productName}` : null,
     params.sku ? `SKU: ${params.sku}` : null,

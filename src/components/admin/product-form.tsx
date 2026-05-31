@@ -119,7 +119,7 @@ export function ProductForm({ action, categories, defaultValues = {}, submitLabe
             type="text"
             maxLength={70}
             defaultValue={defaultValues.metaTitle}
-            placeholder={`${defaultValues.name ?? "Product name"} | Qasr-e-Shehbala`}
+            placeholder={`${defaultValues.name ?? "Product name"} | Qasar-e-Shehbala`}
             className={ic(!!fieldError("metaTitle"))}
           />
         </Field>

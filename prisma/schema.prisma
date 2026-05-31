@@ -1,5 +1,5 @@
 // ============================================================================
-// Qasr-e-Shehbala — PostgreSQL schema (Prisma)
+// Qasar-e-Shehbala — PostgreSQL schema (Prisma)
 //
 // Conventions (see docs/DATABASE.md for full rationale):
 //   • Money:    BigInt minor units (paisa). NEVER Float/Decimal. Field suffix *Minor.

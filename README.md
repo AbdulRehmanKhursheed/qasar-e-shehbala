@@ -1,4 +1,4 @@
-# Qasr-e-Shehbala
+# Qasar-e-Shehbala
 
 Ecommerce and tailoring platform for a premium Pakistani menswear house — made-to-measure sherwani, prince coats, and groom wear, crafted in Saddar, Rawalpindi since 1999.
 
@@ -67,7 +67,7 @@ npm run db:push     # apply the schema
 npm run db:seed     # seed a branch, owner account, categories, fabrics, and sample products
 ```
 
-The seed creates an owner login: `owner@qasrshehbala.pk` / `changeme123`. **Change this password before going live.**
+The seed creates an owner login: `owner@qasarshehbala.pk` / `changeme123`. **Change this password before going live.**
 
 ### 4. Run
 

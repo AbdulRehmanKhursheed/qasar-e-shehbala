@@ -13,7 +13,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
           <p className="text-xl font-bold text-gray-900" style={{ fontFamily: "Georgia, serif" }}>
-            Qasr-e-Shehbala
+            Qasar-e-Shehbala
           </p>
           <p className="text-xs uppercase tracking-wider text-[#c9a227]">Admin Portal</p>
         </div>

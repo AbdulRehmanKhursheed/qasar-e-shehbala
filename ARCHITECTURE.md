@@ -1,4 +1,4 @@
-# Qasr-e-Shehbala — Architecture
+# Qasar-e-Shehbala — Architecture
 
 > **Status:** Phase-1 design, agreed 2026-05-31
 > **Business:** Made-to-measure groom wear & menswear (sherwani, prince coat, waistcoat), physical shop in Saddar, Rawalpindi since 1999. First digital presence.

@@ -36,7 +36,7 @@ export default function AboutPage() {
         {/* Story */}
         <div className="mt-10 space-y-6 text-base leading-8 text-gray-600 max-w-3xl">
           <p>
-            Qasr-e-Shehbala &mdash; <em>&ldquo;The Palace of Royalty&rdquo;</em> &mdash; was founded in
+            Qasar-e-Shehbala &mdash; <em>&ldquo;The Palace of Royalty&rdquo;</em> &mdash; was founded in
             Saddar, Rawalpindi in 1999 with a single purpose: to dress the Pakistani
             groom in a garment he would remember for a lifetime.
           </p>

@@ -1,4 +1,4 @@
-# Qasr-e-Shehbala — Database Design
+# Qasar-e-Shehbala — Database Design
 
 > Companion to [`../prisma/schema.prisma`](../prisma/schema.prisma) (validated against Prisma 6/7).
 > Stack: PostgreSQL · Prisma · NestJS · Next.js. Single company, multi-branch, solo/tiny team.

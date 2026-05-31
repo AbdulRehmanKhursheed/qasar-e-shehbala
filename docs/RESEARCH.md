@@ -1,4 +1,4 @@
-# Qasr-e-Shehbala — Market Research & Decision Log
+# Qasar-e-Shehbala — Market Research & Decision Log
 
 > Compiled 2026-05-31 from a multi-agent research + design pass. This is the evidence base behind [`../ARCHITECTURE.md`](../ARCHITECTURE.md).
 > **Confidence tags:** `[HIGH]` corroborated across sources · `[MEDIUM]` directional. Treat all pricing/tax/latency figures as 2025–2026 estimates to **re-verify before relying on them**.

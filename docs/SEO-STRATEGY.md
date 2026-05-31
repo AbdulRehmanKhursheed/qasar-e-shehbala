@@ -1,4 +1,4 @@
-# Qasr-e-Shehbala — SEO Strategy
+# Qasar-e-Shehbala — SEO Strategy
 
 > Premium menswear / made-to-measure groom wear · Saddar, Rawalpindi · est. 1999
 > Companion to [`RESEARCH.md`](RESEARCH.md). Built for realistic Pakistani search behaviour (English + Roman-Urdu, strong local intent, Oct–Feb wedding seasonality).
