@@ -1,7 +1,3 @@
-// ─── Core domain types ─────────────────────────────────────────────────────────
-// Serialization note: BigInt (DB paisa) is serialized as string in API responses,
-// then parsed back to bigint for math. Only format for display at the view layer.
-
 export interface Product {
   id: string;
   slug: string;
