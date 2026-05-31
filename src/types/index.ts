@@ -105,6 +105,7 @@ export interface BlogTag {
 export interface FilterState {
   category?: string;
   fabric?: string;
+  color?: string;
   minPrice?: number;
   maxPrice?: number;
   productType?: "STOCK" | "MADE_TO_ORDER";

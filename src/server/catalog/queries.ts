@@ -75,6 +75,16 @@ function buildOrderBy(sort?: FilterState["sort"]): Prisma.ProductOrderByWithRela
 
 export async function getProducts(filters: FilterState = {}): Promise<Product[]> {
   return safeQuery(async () => {
+    const priceWhere =
+      filters.minPrice != null || filters.maxPrice != null
+        ? {
+            basePriceMinor: {
+              ...(filters.minPrice != null ? { gte: BigInt(Math.round(filters.minPrice * 100)) } : {}),
+              ...(filters.maxPrice != null ? { lte: BigInt(Math.round(filters.maxPrice * 100)) } : {}),
+            },
+          }
+        : {};
+
     const where: Prisma.ProductWhereInput = {
       isPublished: true,
       ...(filters.category ? { category: { slug: filters.category } } : {}),
@@ -82,6 +92,10 @@ export async function getProducts(filters: FilterState = {}): Promise<Product[]>
       ...(filters.fabric
         ? { fabricOptions: { some: { fabric: { code: filters.fabric } } } }
         : {}),
+      ...(filters.color
+        ? { fabricOptions: { some: { fabric: { color: { equals: filters.color, mode: "insensitive" } } } } }
+        : {}),
+      ...priceWhere,
     };
 
     const records = await prisma.product.findMany({
@@ -205,6 +219,18 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null> 
       introCopy: record.introCopy,
     };
   }, null);
+}
+
+export async function getAvailableColors(): Promise<string[]> {
+  return safeQuery(async () => {
+    const rows = await prisma.fabric.findMany({
+      where: { color: { not: null }, deletedAt: null },
+      select: { color: true },
+      distinct: ["color"],
+      orderBy: { color: "asc" },
+    });
+    return rows.map((row) => row.color).filter((color): color is string => Boolean(color));
+  }, []);
 }
 
 export async function getFabrics(): Promise<Fabric[]> {

@@ -206,6 +206,27 @@ export const CATEGORY_SEO_COPY: Record<string, string> = {
  */
 export const GOOGLE_REVIEWS: { quote: string; name: string; occasion: string }[] = [];
 
+/** Swatch hex for known fabric colours; falls back to a neutral dot otherwise. */
+export const COLOR_SWATCHES: Record<string, string> = {
+  Black: "#1A1410",
+  "Bottle Green": "#1B3A2A",
+  Charcoal: "#36454F",
+  Gold: "#C9A227",
+  Ivory: "#F3ECDD",
+  Mint: "#BFD8C5",
+  Navy: "#1F2A44",
+  "Oxblood Maroon": "#5C1A24",
+  White: "#FBFAF6",
+};
+
+/** Price filter buckets (PKR rupees). maxPrice null = no upper bound. */
+export const PRICE_BUCKETS = [
+  { label: "Under ₨50,000", minPrice: undefined, maxPrice: 50000 },
+  { label: "₨50,000 – ₨100,000", minPrice: 50000, maxPrice: 100000 },
+  { label: "₨100,000 – ₨150,000", minPrice: 100000, maxPrice: 150000 },
+  { label: "Over ₨150,000", minPrice: 150000, maxPrice: undefined },
+] as const;
+
 /** Event types for whatsapp_click analytics beacon. */
 export const ANALYTICS_EVENTS = {
   WHATSAPP_CLICK: "whatsapp_click",

@@ -5,11 +5,13 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { COLOR_SWATCHES, PRICE_BUCKETS } from "@/lib/constants";
 import type { FilterState } from "@/types";
 import type { Fabric } from "@/types";
 
 interface FilterSidebarProps {
   fabrics: Fabric[];
+  colors?: string[];
   currentFilters: FilterState;
 }
 
@@ -26,21 +28,21 @@ const PRODUCT_TYPES = [
   { value: "STOCK", label: "Ready to Wear" },
 ];
 
-export function FilterSidebar({ fabrics, currentFilters }: FilterSidebarProps) {
+export function FilterSidebar({ fabrics, colors = [], currentFilters }: FilterSidebarProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const updateFilters = useCallback(
-    (key: string, value: string) => {
+    (entries: Record<string, string | undefined>) => {
       const params = new URLSearchParams(searchParams.toString());
-      if (value) {
-        params.set(key, value);
-      } else {
-        params.delete(key);
+      for (const [key, value] of Object.entries(entries)) {
+        if (value) params.set(key, value);
+        else params.delete(key);
       }
       params.delete("page"); // reset to page 1 on filter change
-      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+      const qs = params.toString();
+      router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
     },
     [router, pathname, searchParams]
   );
@@ -49,8 +51,14 @@ export function FilterSidebar({ fabrics, currentFilters }: FilterSidebarProps) {
     router.push(pathname, { scroll: false });
   }, [router, pathname]);
 
+  const activePriceBucket = PRICE_BUCKETS.findIndex(
+    (bucket) =>
+      bucket.minPrice === currentFilters.minPrice && bucket.maxPrice === currentFilters.maxPrice
+  );
+
   const hasActiveFilters =
     currentFilters.fabric ||
+    currentFilters.color ||
     currentFilters.minPrice ||
     currentFilters.maxPrice ||
     currentFilters.productType ||
@@ -84,8 +92,67 @@ export function FilterSidebar({ fabrics, currentFilters }: FilterSidebarProps) {
               key={option.value}
               label={option.label}
               checked={(currentFilters.sort ?? "") === option.value}
-              onChange={() => updateFilters("sort", option.value)}
+              onChange={() => updateFilters({ sort: option.value })}
               name="sort"
+            />
+          ))}
+        </div>
+      </FilterGroup>
+
+      {/* Colour */}
+      {colors.length > 0 && (
+        <FilterGroup title="Colour">
+          <div className="flex flex-wrap gap-2">
+            {colors.map((color) => {
+              const active = currentFilters.color === color;
+              return (
+                <button
+                  key={color}
+                  type="button"
+                  onClick={() => updateFilters({ color: active ? undefined : color })}
+                  aria-pressed={active}
+                  title={color}
+                  className={cn(
+                    "flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs transition-colors",
+                    active
+                      ? "border-terracotta bg-terracotta-pale text-wine"
+                      : "border-sand text-slate hover:border-mist"
+                  )}
+                >
+                  <span
+                    className="h-3.5 w-3.5 rounded-full ring-1 ring-inset ring-charcoal/15"
+                    style={{ backgroundColor: COLOR_SWATCHES[color] ?? "#C9BCA8" }}
+                    aria-hidden="true"
+                  />
+                  {color}
+                </button>
+              );
+            })}
+          </div>
+        </FilterGroup>
+      )}
+
+      {/* Price */}
+      <FilterGroup title="Price">
+        <div className="space-y-1.5">
+          <RadioOption
+            label="Any price"
+            checked={activePriceBucket === -1}
+            onChange={() => updateFilters({ minPrice: undefined, maxPrice: undefined })}
+            name="price"
+          />
+          {PRICE_BUCKETS.map((bucket, i) => (
+            <RadioOption
+              key={bucket.label}
+              label={bucket.label}
+              checked={activePriceBucket === i}
+              onChange={() =>
+                updateFilters({
+                  minPrice: bucket.minPrice ? String(bucket.minPrice) : undefined,
+                  maxPrice: bucket.maxPrice ? String(bucket.maxPrice) : undefined,
+                })
+              }
+              name="price"
             />
           ))}
         </div>
@@ -99,7 +166,7 @@ export function FilterSidebar({ fabrics, currentFilters }: FilterSidebarProps) {
               key={option.value}
               label={option.label}
               checked={(currentFilters.productType ?? "") === option.value}
-              onChange={() => updateFilters("type", option.value)}
+              onChange={() => updateFilters({ type: option.value })}
               name="productType"
             />
           ))}
@@ -113,7 +180,7 @@ export function FilterSidebar({ fabrics, currentFilters }: FilterSidebarProps) {
             <RadioOption
               label="All Fabrics"
               checked={!currentFilters.fabric}
-              onChange={() => updateFilters("fabric", "")}
+              onChange={() => updateFilters({ fabric: undefined })}
               name="fabric"
             />
             {fabrics.map((fabric) => (
@@ -121,7 +188,7 @@ export function FilterSidebar({ fabrics, currentFilters }: FilterSidebarProps) {
                 key={fabric.id}
                 label={fabric.name}
                 checked={currentFilters.fabric === fabric.code}
-                onChange={() => updateFilters("fabric", fabric.code)}
+                onChange={() => updateFilters({ fabric: fabric.code })}
                 name="fabric"
               />
             ))}

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { buildMetadata, collectionJsonLd } from "@/lib/seo";
 import { GROOM_CATEGORIES, CATEGORY_SEO_COPY } from "@/lib/constants";
-import { getCategoryBySlug, getFabrics, getProducts } from "@/server/catalog/queries";
+import { getCategoryBySlug, getFabrics, getProducts, getAvailableColors } from "@/server/catalog/queries";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { FilterSidebar } from "@/components/collection/filter-sidebar";
 import { ProductGrid } from "@/components/product/product-grid";
@@ -46,14 +46,18 @@ export default async function CollectionPage({ params, searchParams }: Collectio
   const filters: FilterState = {
     category: slug,
     fabric: sp.fabric,
+    color: sp.color,
+    minPrice: sp.minPrice ? Number(sp.minPrice) : undefined,
+    maxPrice: sp.maxPrice ? Number(sp.maxPrice) : undefined,
     sort: sp.sort as FilterState["sort"],
     productType: sp.type as FilterState["productType"],
   };
 
-  const [category, products, fabrics] = await Promise.all([
+  const [category, products, fabrics, colors] = await Promise.all([
     getCategoryBySlug(slug),
     getProducts(filters),
     getFabrics(),
+    getAvailableColors(),
   ]);
 
   const name = category?.name ?? staticCategory.label;
@@ -88,7 +92,7 @@ export default async function CollectionPage({ params, searchParams }: Collectio
 
         <div className="flex flex-col gap-10 lg:flex-row">
           <div className="hidden w-56 shrink-0 lg:block">
-            <FilterSidebar fabrics={fabrics} currentFilters={filters} />
+            <FilterSidebar fabrics={fabrics} colors={colors} currentFilters={filters} />
           </div>
 
           <div className="flex-1">
