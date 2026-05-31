@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   ShoppingBag,
+  Layers,
+  Palette,
   Shirt,
   Scissors,
   Package,
@@ -24,6 +26,8 @@ const NAV = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { label: "Orders", href: "/admin/orders", icon: ShoppingBag },
   { label: "Products", href: "/admin/products", icon: Shirt },
+  { label: "Categories", href: "/admin/categories", icon: Layers },
+  { label: "Fabrics", href: "/admin/fabrics", icon: Palette },
   { label: "Tailoring", href: "/admin/tailoring", icon: Scissors },
   { label: "Inventory", href: "/admin/inventory", icon: Package },
   { label: "Customers", href: "/admin/customers", icon: Users },
