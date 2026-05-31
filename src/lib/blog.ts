@@ -77,3 +77,17 @@ export function getAllPosts(): BlogPostMeta[] {
 export function getPostBySlug(slug: string): BlogPost | null {
   return readPostFile(slug);
 }
+
+export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
+  const all = getAllPosts();
+  const current = all.find((post) => post.slug === slug);
+  if (!current) return all.filter((post) => post.slug !== slug).slice(0, limit);
+
+  const sameCategory = all.filter(
+    (post) => post.slug !== slug && post.category === current.category
+  );
+  const rest = all.filter(
+    (post) => post.slug !== slug && post.category !== current.category
+  );
+  return [...sameCategory, ...rest].slice(0, limit);
+}

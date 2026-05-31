@@ -62,7 +62,7 @@ export default function AboutPage() {
           <p>
             For over 25 years our master karigars have crafted sherwani, prince coats,
             and waistcoats by hand, using techniques passed down through generations of
-            tailors on Bank Road. Every garment begins with a conversation &mdash; about
+            tailors at City Centre, Saddar. Every garment begins with a conversation &mdash; about
             the occasion, the fabric, the cut &mdash; and ends with a perfect fit at your
             final naap.
           </p>

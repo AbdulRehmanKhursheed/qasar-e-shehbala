@@ -314,7 +314,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-terracotta mb-3">Come see us</p>
           <h2 className="font-display text-[2.2rem] font-light text-charcoal">
-            Bank Road, Saddar — Rawalpindi
+            City Centre, Saddar — Rawalpindi
           </h2>
           <p className="mt-3 text-[14px] text-mist">
             Our karigars are here every day, 10am to 11pm. Walk in, or message ahead on WhatsApp.

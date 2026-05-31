@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { buildMetadata, articleJsonLd, faqJsonLd } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
 import { SITE } from "@/lib/constants";
-import { getAllPostSlugs, getPostBySlug } from "@/lib/blog";
+import { getAllPostSlugs, getPostBySlug, getRelatedPosts } from "@/lib/blog";
 import { JsonLd } from "@/components/seo/json-ld";
 import { MdxContent } from "@/components/blog/mdx-content";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
@@ -38,6 +38,9 @@ export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) notFound();
+
+  const related = getRelatedPosts(slug);
+  const author = post.author ?? SITE.name;
 
   const structuredData: Record<string, unknown>[] = [
     articleJsonLd({
@@ -77,10 +80,21 @@ export default async function BlogPostPage({ params }: Props) {
             {post.title}
           </h1>
 
-          <div className="mt-4 flex items-center gap-3 text-sm text-mist">
-            <time dateTime={post.date}>{formatDate(post.date)}</time>
-            <span aria-hidden="true">·</span>
-            <span>{post.readingMinutes} min read</span>
+          <div className="mt-6 flex items-center gap-3 border-y border-sand py-4">
+            <span
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-terracotta-pale font-display text-base text-terracotta"
+              aria-hidden="true"
+            >
+              {author.slice(0, 1)}
+            </span>
+            <div className="text-sm">
+              <p className="font-medium text-charcoal">{author}</p>
+              <p className="text-[13px] text-mist">
+                <time dateTime={post.date}>{formatDate(post.date)}</time>
+                {" · "}
+                {post.readingMinutes} min read
+              </p>
+            </div>
           </div>
         </header>
 
@@ -126,6 +140,29 @@ export default async function BlogPostPage({ params }: Props) {
             </a>
           </div>
         </aside>
+
+        {related.length > 0 && (
+          <section className="mt-16 border-t border-sand pt-10" aria-labelledby="related-posts">
+            <h2 id="related-posts" className="mb-6 font-display text-2xl font-light text-charcoal">
+              Keep reading
+            </h2>
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+              {related.map((r) => (
+                <Link
+                  key={r.slug}
+                  href={`/blog/${r.slug}`}
+                  className="group rounded-2xl border border-sand bg-cream p-5 transition-colors hover:border-terracotta/40"
+                >
+                  <Badge variant="outline">{r.category}</Badge>
+                  <p className="mt-3 font-display text-lg leading-snug text-charcoal transition-colors group-hover:text-terracotta">
+                    {r.title}
+                  </p>
+                  <p className="mt-2 text-[13px] leading-6 text-mist line-clamp-2">{r.description}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </article>
     </div>
   );

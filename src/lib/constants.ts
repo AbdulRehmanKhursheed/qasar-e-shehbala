@@ -13,13 +13,13 @@ export const SITE = {
   whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "923045919454",
   email: process.env.NEXT_PUBLIC_EMAIL ?? "malik.ali5560@gmail.com",
   address: {
-    line1: "Shop M 26, Mezzanine Floor, Bank Road",
+    line1: "Shop M 26, Mezzanine Floor, City Centre, Bank Road",
     area: "Saddar",
     city: "Rawalpindi",
     province: "Punjab",
     country: "Pakistan",
     postalCode: "46000",
-    full: "Shop M 26, Mezzanine Floor, Bank Road, Saddar, Rawalpindi, 46000",
+    full: "Shop M 26, Mezzanine Floor, City Centre, Bank Road, Saddar, Rawalpindi, 46000",
     googleMapsUrl: "https://maps.app.goo.gl/DRAcbHSR37YzFCpe9",
   },
   social: {
